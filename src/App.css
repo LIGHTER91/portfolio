@@ -2,3 +2,14 @@
 #leva__root {
   display: none; 
 }
+@media (max-width: 768px) {
+  canvas {
+    width: 100vw;  /* Prend la largeur complète de l'écran */
+    height: 100vh; /* Prend la hauteur complète de l'écran */
+  }
+  /* Ajustements de style pour mobile */
+  .model-text {
+    font-size: 2rem; /* Réduire la taille de la police */
+    text-align: center;
+  }
+}

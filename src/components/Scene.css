@@ -12,3 +12,18 @@ body,
   width: 100%; /* Full viewport width */
   height: 100%; /* Full viewport height */
 }
+/* Scene.css */
+.canvas {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    touch-action: none; /* Disable scrolling when interacting with the canvas */
+  }
+  
+  @media (max-width: 768px) {
+    .canvas {
+        width: 100vw;  /* Prend la largeur complète de l'écran */
+        height: 100vh; 
+    }
+  }
+  
