@@ -7,9 +7,9 @@ extend({ PlaneGeometry: THREE.PlaneGeometry });
 
 const AnimatedBackground = () => {
   const ref = useRef<THREE.Mesh>(null);
-  const isMobile = window.innerWidth < 768;
+  
   useFrame(({ clock }) => {
-    if (ref.current&&!isMobile) {
+    if (ref.current) {
       const elapsedTime = clock.getElapsedTime();
       // Cast material to ShaderMaterial to access uniforms
       (ref.current.material as THREE.ShaderMaterial).uniforms.uTime.value = elapsedTime;
