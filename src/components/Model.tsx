@@ -19,15 +19,16 @@ const Model = () => {
   // Load the torus model from the correct path
   const { nodes } = useGLTF("portfolio/medias/portfolio.glb") as unknown as GLTFResult; // Type assertion
 
+  
   const [time, setTime] = useState(0);
   // Animate the torus rotation
   useFrame(() => {
     if (torusRef.current) {
-      setTime(prevTime => prevTime + 0.01); // Increment time
+      setTime(prevTime => prevTime + 0.015); // Increment time
 
       // Calculate the oscillation using sine
-      torusRef.current.rotation.y = Math.sin(time) * (Math.PI / 65); // ±30 degrees
-      torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 65); // ±30 degrees
+      torusRef.current.rotation.y = Math.sin(time) * (Math.PI / 80); // ±30 degrees
+      torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 80); // ±30 degrees
     }
   });
 
@@ -57,9 +58,9 @@ const Model = () => {
       <group position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <mesh
           ref={torusRef}
-          scale={[1.6, 5, 1.9]}
+          scale={[1.2, 5, 1.5]}
           geometry={nodes.Texte.geometry} // Now TypeScript should recognize this
-          position={[0, -0.22, -0.4]} // Adjust mesh position relative to new pivot
+          position={[0, -0.22, 0.4]} // Adjust mesh position relative to new pivot
         >
           <meshStandardMaterial color="skyblue" metalness={0.6} roughness={0.1} />
           <MeshTransmissionMaterial {...materialProps} />
