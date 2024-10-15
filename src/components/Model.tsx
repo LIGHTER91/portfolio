@@ -15,15 +15,17 @@ interface GLTFResult {
 
 const Model = () => {
   const torusRef = useRef<Mesh>(null); // Specify the ref type
+  const isMobile = window.innerWidth < 768;
+  const modelPath = isMobile ? "portfolio/medias/portfolio_m.glb" : "portfolio/medias/portfolio.glb";
 
   // Load the torus model from the correct path
-  const { nodes } = useGLTF("portfolio/medias/portfolio.glb") as unknown as GLTFResult; // Type assertion
+  const { nodes } = useGLTF(modelPath) as unknown as GLTFResult; // Type assertion
 
   
   const [time, setTime] = useState(0);
   // Animate the torus rotation
   useFrame(() => {
-    if (torusRef.current) {
+    if (!isMobile &&torusRef.current) {
       setTime(prevTime => prevTime + 0.015); // Increment time
 
       // Calculate the oscillation using sine
