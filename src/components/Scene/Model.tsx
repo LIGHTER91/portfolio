@@ -35,7 +35,7 @@ const Model = () => {
   // Memoize the geometry and material only if on mobile
   const geometry = isMobile ? useMemo(() => nodes.Texte.geometry, [nodes.Texte.geometry]) : nodes.Texte.geometry;
   const torusMaterial = isMobile ? useMemo(() => (
-    <MeshTransmissionMaterial {...materialProps} />
+    <MeshTransmissionMaterial color="skyblue" metalness={0.6} roughness={0.1} />
   ), [materialProps]) : <MeshTransmissionMaterial {...materialProps} />;
 
   // Adjust the 3D model and text size based on screen width
