@@ -5,20 +5,22 @@ import * as THREE from 'three';
 // Extend Three.js objects to be used declaratively
 extend({ PlaneGeometry: THREE.PlaneGeometry });
 
-const AnimatedBackground = () => {
+interface AnimatedBackgroundProps {
+  position: [number, number, number]; // Accept position as prop
+}
+
+const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ position }) => {
   const ref = useRef<THREE.Mesh>(null);
   
   useFrame(({ clock }) => {
     if (ref.current) {
       const elapsedTime = clock.getElapsedTime();
-      // Cast material to ShaderMaterial to access uniforms
       (ref.current.material as THREE.ShaderMaterial).uniforms.uTime.value = elapsedTime;
     }
   });
 
   return (
-    <mesh ref={ref} position={[0, 0, -9]}>
-      {/* Use PlaneGeometry instead of PlaneBufferGeometry */}
+    <mesh ref={ref} position={position}>
       <planeGeometry args={[2, 30, 32, 32]} />
       <shaderMaterial
         uniforms={{
@@ -44,9 +46,8 @@ const fragmentShader = `
   varying vec2 vUv;
 
   void main() {
-    // Animate the wave based on time and UV coordinates
-    float wave = sin(vUv.x * 10.0 + uTime) * 0.5 + 0.5; // Offset to make it visible
-    vec3 color = vec3(vUv.x, wave, 1.0 - vUv.x); // Vary colors based on wave and uv.x
+    float wave = sin(vUv.x * 10.0 + uTime) * 0.5 + 0.5; 
+    vec3 color = vec3(vUv.x, wave, 1.0 - vUv.x); 
     gl_FragColor = vec4(color, 1.0);
   }
 `;

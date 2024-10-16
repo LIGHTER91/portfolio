@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect } from 'react';
+import { useRef, useState, useLayoutEffect, useMemo } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, MeshTransmissionMaterial, Text } from '@react-three/drei';
 import { Mesh } from 'three';
@@ -32,11 +32,17 @@ const Model = () => {
     backside: { value: true },
   });
 
+  // Memoize the geometry and material only if on mobile
+  const geometry = isMobile ? useMemo(() => nodes.Texte.geometry, [nodes.Texte.geometry]) : nodes.Texte.geometry;
+  const torusMaterial = isMobile ? useMemo(() => (
+    <MeshTransmissionMaterial {...materialProps} />
+  ), [materialProps]) : <MeshTransmissionMaterial {...materialProps} />;
+
   // Adjust the 3D model and text size based on screen width
   const textScale = isMobile ? 0.75 : 3.5;
   const torusScale: [number, number, number] = isMobile ? [0.4, 2.5, 0.5] : [1.2, 5, 1.5]; // Cast as tuple
 
-  // Animate the torus rotation
+  // Animate the torus rotation if not mobile
   useFrame(() => {
     if (!isMobile && torusRef.current) {
       setTime((prevTime) => prevTime + 0.015); // Increment time
@@ -74,11 +80,11 @@ const Model = () => {
         <mesh
           ref={torusRef}
           scale={torusScale}
-          geometry={nodes.Texte.geometry} // Now TypeScript should recognize this
+          geometry={geometry} // Use the possibly memoized geometry
           position={[0, -0.22, 0.4]} // Adjust mesh position relative to new pivot
         >
           <meshStandardMaterial color="skyblue" metalness={0.6} roughness={0.1} />
-          <MeshTransmissionMaterial {...materialProps} />
+          {torusMaterial} {/* Use the possibly memoized material */}
         </mesh>
       </group>
     </group>

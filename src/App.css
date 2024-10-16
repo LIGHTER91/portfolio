@@ -13,3 +13,16 @@
     text-align: center;
   }
 }
+.header {
+  position: fixed; /* or absolute, depending on your design */
+  top: 0; /* Position at the top */
+  left: 0; /* Position on the left */
+  right: 0; /* Position on the right */
+  z-index: 10; /* Ensure it's above other content */
+  background-color: rgba(255, 255, 255, 0.9); /* Optional: Slightly transparent background */
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.scene {
+  margin-top: 60px; /* Adjust this based on the height of your Header */
+}
