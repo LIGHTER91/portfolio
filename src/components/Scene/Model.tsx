@@ -39,7 +39,7 @@ const Model = () => {
   ), [materialProps]) : <MeshTransmissionMaterial {...materialProps} />;
 
   // Adjust the 3D model and text size based on screen width
-  const textScale = isMobile ? 0.75 : 3.5;
+  const textScale = isMobile ? 0.75 : 1;
   const torusScale: [number, number, number] = isMobile ? [0.4, 2.5, 0.5] : [1.2, 5, 1.5]; // Cast as tuple
 
   // Animate the torus rotation if not mobile
@@ -66,7 +66,7 @@ const Model = () => {
     <group>
       <Text
         font={'portfolio/fonts/ppneuemontreal-bold.otf'}
-        position={[0, 0, -6]}
+        position={[0, 1, -6]}
         fontSize={textScale}
         color="white"
         anchorX="center"
@@ -74,6 +74,7 @@ const Model = () => {
       >
         LUCIEN LACHAUD
       </Text>
+      
 
       {/* Outer group to change pivot point */}
       <group position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>

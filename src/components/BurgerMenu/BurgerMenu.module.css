@@ -3,10 +3,10 @@
     right: 0px;
     margin: 20px;
     z-index: 11;
-    width: 80px;
+    width: 140px;
     height: 80px;
     border-radius: 50%;
-    background-color: #455CE9;
+    background-color: #ffffff00;
     cursor: pointer;
     display: flex;
     align-items: center;

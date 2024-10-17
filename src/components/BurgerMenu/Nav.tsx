@@ -27,7 +27,7 @@ const Nav: React.FC = () => {
       <div className={styles.body}>
         <div onMouseLeave={() => setSelectedIndicator(pathname)} className={styles.nav}>
           <div className={styles.header}>
-            <p>Navigation</p>
+            <p>PROJECT</p>
           </div>
           {navItems.map((data, index) => (
             <Link 
@@ -39,9 +39,6 @@ const Nav: React.FC = () => {
           ))}
         </div>
         <div className={styles.footer}>
-          <a href="https://www.awwwards.com">Awwwards</a>
-          <a href="https://www.instagram.com">Instagram</a>
-          <a href="https://www.dribbble.com">Dribbble</a>
           <a href="https://www.linkedin.com/in/lucien-lachaud-330273257/">LinkedIn</a>
         </div>
       </div>
