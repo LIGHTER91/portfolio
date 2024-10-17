@@ -1,11 +1,11 @@
-import { useRef, useState, useLayoutEffect, useMemo } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, MeshTransmissionMaterial, Text } from '@react-three/drei';
+import { useGLTF, MeshTransmissionMaterial } from '@react-three/drei';
 import { Mesh } from 'three';
+import * as THREE from 'three'; // Ensure THREE is imported
 import { useControls } from 'leva';
-import * as THREE from 'three';
+import Title from './Title';
 
-// Define the expected structure of the nodes
 interface GLTFResult {
   nodes: {
     Texte: {
@@ -15,14 +15,16 @@ interface GLTFResult {
 }
 
 const Model = () => {
-  const torusRef = useRef<Mesh>(null); // Specify the ref type
-  const { nodes } = useGLTF('portfolio/medias/portfolio.glb') as unknown as GLTFResult; // Type assertion
+  const torusRef = useRef<Mesh>(null);
+  const { nodes } = useGLTF('portfolio/medias/portfolio.glb') as unknown as GLTFResult;
   const [time, setTime] = useState(0);
+  const [showModel, setShowModel] = useState(false);
+  const [yPosition, setYPosition] = useState(-8); // Start below the visible area
+  const [opacity, setOpacity] = useState(0); // Initial opacity
 
   const { size } = useThree();
   const isMobile = size.width < 768;
 
-  // Controls for material properties
   const materialProps = useControls({
     thickness: { value: 0.25, min: 0, max: 3, step: 0.05 },
     roughness: { value: 0, min: 0, max: 1, step: 0.1 },
@@ -32,62 +34,48 @@ const Model = () => {
     backside: { value: true },
   });
 
-  // Memoize the geometry and material only if on mobile
   const geometry = isMobile ? useMemo(() => nodes.Texte.geometry, [nodes.Texte.geometry]) : nodes.Texte.geometry;
-  const torusMaterial = isMobile ? useMemo(() => (
-    <MeshTransmissionMaterial color="skyblue" metalness={0.6} roughness={0.1} />
-  ), [materialProps]) : <MeshTransmissionMaterial {...materialProps} />;
+  const torusMaterial = <MeshTransmissionMaterial {...materialProps} />;
 
-  // Adjust the 3D model and text size based on screen width
-  const textScale = isMobile ? 0.75 : 1;
-  const torusScale: [number, number, number] = isMobile ? [0.4, 2.5, 0.5] : [1.2, 5, 1.5]; // Cast as tuple
+  const torusScale: [number, number, number] = isMobile ? [0.4, 2.5, 0.5] : [1.2, 5, 1.5];
 
-  // Animate the torus rotation if not mobile
   useFrame(() => {
     if (!isMobile && torusRef.current) {
-      setTime((prevTime) => prevTime + 0.015); // Increment time
+      setTime((prevTime) => prevTime + 0.015);
+      torusRef.current.rotation.y = Math.sin(time) * (Math.PI / 80);
+      torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 80);
+    }
 
-      // Calculate the oscillation using sine
-      torusRef.current.rotation.y = Math.sin(time) * (Math.PI / 80); // ±30 degrees
-      torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 80); // ±30 degrees
+    // Animate the model's rise after the title appears
+    if (showModel) {
+      setYPosition((prevY) => {
+        if (prevY < -0.22) { // Target Y position
+          return prevY + 0.15; // Adjust speed of rise
+        } else {
+          setOpacity(1); // Set opacity to 1 when reached
+          return prevY; // Maintain position
+        }
+      });
     }
   });
 
-  // Dynamically resize and reposition elements based on the viewport size
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      // You can add logic to adjust the text and model positions or scales here if needed
-    };
-
-    handleResize(); // Call once on mount
-  }, [size]);
-
   return (
     <group>
-      <Text
-        font={'portfolio/fonts/ppneuemontreal-bold.otf'}
-        position={[0, 1, -6]}
-        fontSize={textScale}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-      >
-        LUCIEN LACHAUD
-      </Text>
-      
+      <Title onComplete={() => setShowModel(true)} />
 
-      {/* Outer group to change pivot point */}
-      <group position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <mesh
-          ref={torusRef}
-          scale={torusScale}
-          geometry={geometry} // Use the possibly memoized geometry
-          position={[0, -0.22, 0.4]} // Adjust mesh position relative to new pivot
-        >
-          <meshStandardMaterial color="skyblue" metalness={0.6} roughness={0.1} />
-          {torusMaterial} {/* Use the possibly memoized material */}
-        </mesh>
-      </group>
+      {showModel && (
+        <group position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh
+            ref={torusRef}
+            scale={torusScale}
+            geometry={geometry}
+            position={[0, yPosition, 0.4]} // Bind Y position
+            material-opacity={opacity} // Bind opacity to mesh material
+          >
+            {torusMaterial}
+          </mesh>
+        </group>
+      )}
     </group>
   );
 };

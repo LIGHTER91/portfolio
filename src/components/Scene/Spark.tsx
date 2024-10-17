@@ -7,7 +7,7 @@ import { DodecahedronGeometry } from 'three';
 extend({ DodecahedronGeometry });
 
 const Spark = () => {
-  const count = 1000; // Number of particles
+  const count = 100; // Number of particles
   const mesh = useRef<THREE.InstancedMesh>(null!);
   const light = useRef<THREE.PointLight>(null!);
   const dummy = useMemo(() => new THREE.Object3D(), []);
@@ -31,7 +31,7 @@ const Spark = () => {
       const speed = 0.005 + Math.random() * 0.01;
       const x = Math.random() * 100 - 50;
       const y = Math.random() * 100 - 50;
-      const z = Math.random() * 100 - 50;
+      const z = Math.random() * 100 - 70;
 
       temp.push({ time, factor, speed, x, y, z });
     }
@@ -62,8 +62,8 @@ const Spark = () => {
   return (
     <>
       {/* Add a bright point light to create a glow effect */}
-      <pointLight ref={light} distance={100} intensity={1000} color="dark blue" />
-      <ambientLight intensity={0.2} />
+      <pointLight ref={light} distance={50} intensity={1000} color="blue" />
+      
       <instancedMesh ref={mesh} args={[new THREE.DodecahedronGeometry(0.2, 0), new THREE.MeshStandardMaterial({ color: 0xffffff }), count]}>
         <dodecahedronGeometry args={[0.2, 0]} />
 
