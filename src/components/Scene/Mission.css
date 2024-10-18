@@ -1,0 +1,122 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+.animated-title { 
+  color: white;
+  font-size: 23px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Share Tech Mono', monospace;
+  animation: textGlitch 3s ease-in-out infinite alternate;
+}
+
+.animated-title {
+  span {
+    display: inline-block;
+    min-width: 1rem;
+  }
+  
+  .animate {
+    @for $i from 1 through 100 {
+      &:nth-child(3n+#{$i}){
+        span {
+          opacity: 0;
+          transform: translateY(2px);
+          animation: displayLetter .5s ease-in-out .5s forwards alternate;
+          letter-spacing: 1px;
+
+          @for $i from 1 through 100 {
+            &:nth-child(3n+#{$i}){
+              animation-delay: (random($speed) / 10) * 1s
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.animated-word {
+  opacity: 0;
+}
+
+@keyframes displayLetter {
+	0% {
+    transform: translateY(2px);
+    color: white;
+    opacity: 0;
+	}
+  10% {
+    opacity: 1;
+    color: limegreen;
+  }
+  20% {
+    opacity: 0;
+    color: white;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 1;
+    color: darkgreen;
+    transform: translateY(1px);
+  }
+  60% {
+    opacity: 1;
+    color: white;
+    transform: translateY(1px);
+  }
+	100% {
+    transform: translateY(0);
+    color: white;
+    opacity: 1;
+	}
+}
+
+@keyframes textGlitch {
+  0% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+	95% {
+    opacity: 0.1;
+  }
+  96% {
+    opacity: 1;
+    transform: translateX(1px);
+  }
+  97% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+// Demo Only Styling
+body {
+  background-color: black;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-replay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: solid 2px white;
+  outline: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  background: black;
+  color: white;
+}

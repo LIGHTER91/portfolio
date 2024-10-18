@@ -51,7 +51,7 @@ const Scene: React.FC = () => {
 
       {/* Show Model only after Title completes */}
       {showModel && <Model />}
-
+      
       {/* Loader will disappear once the scene is fully loaded */}
       <Loader />
     </Canvas>
