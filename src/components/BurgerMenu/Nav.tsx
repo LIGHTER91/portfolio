@@ -3,16 +3,21 @@ import styles from './Nav.module.css';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { menuSlide } from './Anim';
-import Link from './Link'; // Ensure this points to the correct path of your Link component
+import Link from './Link';
 import Curve from './Curve';
+
 const navItems = [
   { title: "Home", href: "/portfolio/" },
-  { title: "Work", href: "/work" },
-  { title: "About", href: "/about" },
-  { title: "Contact", href: "/contact" },
+  { title: "Work", href: "portfolio/work" },
+  { title: "About", href: "portfolio/about" },
+  { title: "Contact", href: "portfolio/contact" },
 ];
 
-const Nav: React.FC = () => {
+interface NavProps {
+  onClose: () => void; // Fonction pour fermer le menu
+}
+
+const Nav: React.FC<NavProps> = () => {
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
@@ -25,7 +30,7 @@ const Nav: React.FC = () => {
       className={styles.menu}
     >
       <div className={styles.body}>
-        <div onMouseLeave={() => setSelectedIndicator(pathname)} className={styles.nav}>
+        <div className={styles.nav}>
           <div className={styles.header}>
             <p>PROJECT</p>
           </div>
@@ -34,7 +39,9 @@ const Nav: React.FC = () => {
               key={index} 
               data={{ ...data, index }} 
               isActive={selectedIndicator === data.href} 
-              setSelectedIndicator={setSelectedIndicator}
+              setSelectedIndicator={(href) => {
+                setSelectedIndicator(href);
+              }}
             />
           ))}
         </div>

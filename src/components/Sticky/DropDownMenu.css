@@ -1,0 +1,27 @@
+.dropdown-menu {
+  position: fixed;
+  bottom: 0; /* Commence en bas de l'écran */
+  left: 0;
+  right: 0;
+  background: rgb(0,0,0);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%); 
+  transition: transform 2s ease; 
+  z-index: 100; 
+  width: 100%;
+  height: 100%;
+}
+
+.dropdown-menu.show {
+  transform: translateY(0); /* Rends le menu visible en le déplaçant vers le haut */
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  margin: 10px 0;
+}

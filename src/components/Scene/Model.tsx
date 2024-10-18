@@ -4,7 +4,6 @@ import { useGLTF, MeshTransmissionMaterial } from '@react-three/drei';
 import { Mesh } from 'three';
 import * as THREE from 'three'; // Ensure THREE is imported
 import { useControls } from 'leva';
-import Title from './Title';
 
 interface GLTFResult {
   nodes: {
@@ -18,7 +17,6 @@ const Model = () => {
   const torusRef = useRef<Mesh>(null);
   const { nodes } = useGLTF('portfolio/medias/portfolio.glb') as unknown as GLTFResult;
   const [time, setTime] = useState(0);
-  const [showModel, setShowModel] = useState(false);
   const [yPosition, setYPosition] = useState(-8); // Start below the visible area
   const [opacity, setOpacity] = useState(0); // Initial opacity
 
@@ -46,36 +44,30 @@ const Model = () => {
       torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 80);
     }
 
-    // Animate the model's rise after the title appears
-    if (showModel) {
-      setYPosition((prevY) => {
-        if (prevY < -0.22) { // Target Y position
-          return prevY + 0.15; // Adjust speed of rise
-        } else {
-          setOpacity(1); // Set opacity to 1 when reached
-          return prevY; // Maintain position
-        }
-      });
-    }
+    // Animate the model's rise
+    setYPosition((prevY) => {
+      if (prevY < -0.22) { // Target Y position
+        return prevY + 0.15; // Adjust speed of rise
+      } else {
+        setOpacity(1); // Set opacity to 1 when reached
+        return prevY; // Maintain position
+      }
+    });
   });
 
   return (
     <group>
-      <Title onComplete={() => setShowModel(true)} />
-
-      {showModel && (
-        <group position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <mesh
-            ref={torusRef}
-            scale={torusScale}
-            geometry={geometry}
-            position={[0, yPosition, 0.4]} // Bind Y position
-            material-opacity={opacity} // Bind opacity to mesh material
-          >
-            {torusMaterial}
-          </mesh>
-        </group>
-      )}
+      <group position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        {!isMobile &&(<mesh
+          ref={torusRef}
+          scale={torusScale}
+          geometry={geometry}
+          position={[0, yPosition, 0.4]} // Bind Y position
+          material-opacity={opacity} // Bind opacity to mesh material
+        >
+          {torusMaterial}
+        </mesh>)}
+      </group>
     </group>
   );
 };
