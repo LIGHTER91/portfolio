@@ -34,8 +34,8 @@ const Scene: React.FC = () => {
 
   return (
     <Canvas
-      pixelRatio={window.devicePixelRatio}
-      gl={{ alpha: false }} // Disable alpha for better performance
+      
+      gl={{ alpha: false, antialias: true }} // Disable alpha for better performance
       style={{ display: 'block' }}
     >
       <ambientLight intensity={0.1} />
