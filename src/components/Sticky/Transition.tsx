@@ -1,33 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import './Transition.css';
-import DropdownMenu from './DropDownMenu'; // Import DropdownMenu
+import DropdownMenu from './DropDownMenu';
 
 interface TransitionProps {
   className?: string;
-  onTransitionComplete: () => void; // Callback to notify when the transition is complete
+  onTransitionComplete: () => void;
 }
 
 const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-
-  // Trigger to show DropdownMenu after the transition animation
+  const [animateDropdown, setAnimateDropdown] = useState(false);
+  const projects = [
+    { title: 'Project 1', image: './portfolio/projects/test.png' },
+    { title: 'Project 2', image: './portfolio/projects/test.png' },
+    { title: 'Project 3', image: './portfolio/projects/test.png' },
+  ];
   useEffect(() => {
     if (className?.includes('show')) {
+      // Affiche le Dropdown après un délai pour laisser le composant se rendre
       const timer = setTimeout(() => {
-        setShowDropdown(true);
-        onTransitionComplete(); // Notify the parent component
-      }, 1000); // Same duration as the transition
+        setShowDropdown(true); // Montrer le DropdownMenu
+      }, 100); // Attendre un peu avant d'afficher le Dropdown
 
-      return () => clearTimeout(timer);
+      const animateTimer = setTimeout(() => {
+        setAnimateDropdown(true); // Appliquer l'animation de translation
+        onTransitionComplete();
+      }, 250); // Synchroniser l'animation avec un délai court
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(animateTimer);
+      };
     } else {
       setShowDropdown(false);
+      setAnimateDropdown(false);
     }
   }, [className, onTransitionComplete]);
 
   return (
     <div className={`transition ${className}`}>
       <div className="transition-background" />
-      {showDropdown && <DropdownMenu className='show' />} {/* Show DropdownMenu */}
+      {showDropdown && <DropdownMenu projects={projects} className={animateDropdown ? 'show' : ''} />}
     </div>
   );
 };

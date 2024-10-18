@@ -33,7 +33,11 @@ const Scene: React.FC = () => {
   const memoizedStars = useMemo(() => <Stars />, []);
 
   return (
-    <Canvas className="canvas" style={{ background: '#000' }}>
+    <Canvas
+      pixelRatio={window.devicePixelRatio}
+      gl={{ alpha: false }} // Disable alpha for better performance
+      style={{ display: 'block' }}
+    >
       <ambientLight intensity={0.1} />
       <directionalLight intensity={1.5} position={[2, 3, 4]} />
       <Environment preset="city" />
