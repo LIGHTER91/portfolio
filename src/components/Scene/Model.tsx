@@ -17,7 +17,7 @@ const Model = () => {
   const torusRef = useRef<Mesh>(null);
   const { nodes } = useGLTF('portfolio/medias/portfolio.glb') as unknown as GLTFResult;
   const [time, setTime] = useState(0);
-  const [yPosition, setYPosition] = useState(-8); 
+  const [yPosition, setYPosition] = useState(-15); 
   const [opacity, setOpacity] = useState(0);
 
   const { size } = useThree();
@@ -36,19 +36,20 @@ const Model = () => {
   const torusMaterial = <MeshTransmissionMaterial {...materialProps} />;
 
   const torusScale: [number, number, number] = isMobile ? [0.4, 2.5, 0.5] : [1.2, 5, 1.5];
-
+  let isArrive=false
   useFrame(() => {
-    if (!isMobile && torusRef.current) {
-      setTime((prevTime) => prevTime + 0.015);
+    if (!isMobile && torusRef.current&&isArrive) {
+      setTime((prevTime) => prevTime + 0.05);
       torusRef.current.rotation.y = Math.sin(time) * (Math.PI / 80);
       torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 80);
     }
 
     setYPosition((prevY) => {
-      if (prevY < -0.22) { 
-        return prevY + 0.15; 
+      if (prevY < -5.22) { 
+        return prevY + 0.025; 
       } else {
-        setOpacity(1); 
+        setOpacity(1);
+        isArrive=true 
         return prevY; 
       }
     });
