@@ -22,13 +22,12 @@ const Nav: React.FC<NavProps> = ({ onClose }) => {
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
   const handleClick = (href: string) => {
-    console.error(href)
     setSelectedIndicator(href);
-    if (href === '/portfolio/') {
-      
-      onClose(); 
-      
-    }
+    
+    // Close the menu when any link is clicked
+    onClose(); 
+    
+    // You can add any additional logic here if needed
   };
 
   return (
@@ -50,7 +49,7 @@ const Nav: React.FC<NavProps> = ({ onClose }) => {
               data={{ ...data, index }} 
               isActive={selectedIndicator === data.href} 
               setSelectedIndicator={setSelectedIndicator} 
-              onClick={() => handleClick(data.href)} // Handle click for INTRO
+              onClick={() => handleClick(data.href)} // Handle click for each link
             />
           ))}
         </div>

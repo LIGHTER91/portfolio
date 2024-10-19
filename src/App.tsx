@@ -45,12 +45,6 @@ const App = () => {
       if (event.key === 'Escape') {
         handleClose(); // Close the menu when Escape is pressed
       }
-      if (event.key ==='ArrowDown'){
-        handleDragDown();
-      }
-      if (event.key ==='ArrowUp'){
-        handleClose();
-      }
     };
 
     window.addEventListener('keydown', handleKeyDown);

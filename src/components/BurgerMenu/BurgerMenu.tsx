@@ -12,6 +12,11 @@ const Header: React.FC<HeaderProps> = ({ onClose }) => {
 
   const handleMenuToggle = () => {
     setIsActive(!isActive);
+    
+  };
+  const onClose_MenuToggle= () =>{
+    setIsActive(false);
+    onClose();
   };
 
   return (
@@ -22,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onClose }) => {
 
       <AnimatePresence mode="wait">
         {isActive && (
-          <Nav onClose={onClose} /> 
+          <Nav onClose={onClose_MenuToggle} /> 
         )}
       </AnimatePresence>
     </>
