@@ -6,7 +6,7 @@ const Home: React.FC = () => {
     <>
       <Scene />
       <div className="drag-down-indicator">
-        <span className="vertical-text">Press & Drag Down --</span>
+        <span className="vertical-text">Press & Drag Down --{'>'}</span>
         
       </div>
     </>

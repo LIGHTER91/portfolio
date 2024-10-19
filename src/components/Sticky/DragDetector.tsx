@@ -8,7 +8,7 @@ interface DragDetectorProps {
 const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration = 500 }) => {
   const isDragging = useRef(false);
   const startY = useRef(0);
-  const pressTimer = useRef<number | null>(null);
+  const pressTimer = useRef<NodeJS.Timeout | null>(null); // Changer le type ici
 
   const handleMouseDown = (event: MouseEvent) => {
     isDragging.current = false;
@@ -17,7 +17,7 @@ const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration =
     // Start the press timer
     pressTimer.current = setTimeout(() => {
       isDragging.current = true;
-    }, pressDuration);
+    }, pressDuration) as unknown as NodeJS.Timeout; // Cast à NodeJS.Timeout
   };
 
   const handleMouseMove = (event: MouseEvent) => {
@@ -33,7 +33,7 @@ const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration =
 
   const handleMouseUp = () => {
     isDragging.current = false;
-    clearTimeout(pressTimer.current!);
+    if (pressTimer.current) clearTimeout(pressTimer.current);
   };
 
   // Handle touch events
@@ -44,7 +44,7 @@ const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration =
 
       pressTimer.current = setTimeout(() => {
         isDragging.current = true;
-      }, pressDuration);
+      }, pressDuration) as unknown as NodeJS.Timeout; // Cast à NodeJS.Timeout
     }
   };
 
@@ -61,7 +61,7 @@ const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration =
 
   const handleTouchEnd = () => {
     isDragging.current = false;
-    clearTimeout(pressTimer.current!);
+    if (pressTimer.current) clearTimeout(pressTimer.current);
   };
 
   useEffect(() => {

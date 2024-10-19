@@ -66,7 +66,7 @@ const App = () => {
           <Route path="portfolio/contact" element={<Contact />} />
         </Routes>
       )}
-      <DragDetector onDragDown={handleDragDown} />
+      {!hideContent &&(<DragDetector onDragDown={handleDragDown} />)}
     </Router>
   );
 };

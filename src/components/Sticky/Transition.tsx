@@ -12,7 +12,7 @@ const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete
   const [animateDropdown, setAnimateDropdown] = useState(false);
   const projects = [
     { title: 'Project 1', image: './portfolio/projects/test.png' },
-    { title: 'Project 2', image: './portfolio/projects/test.png' },
+    { title: 'Project 2', image: './portfolio/projects/r.jpeg' },
     { title: 'Project 3', image: './portfolio/projects/test.png' },
   ];
   useEffect(() => {

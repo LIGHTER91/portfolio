@@ -1,3 +1,17 @@
+@keyframes text-animation {
+  0% {
+    content: "Press & Drag Down -";
+  }
+  33% {
+    content: "Press & Drag Down --";
+  }
+  66% {
+    content: "Press & Drag Down ---";
+  }
+  100% {
+    content: "Press & Drag Down -";
+  }
+}
 .drag-down-indicator {
   position: absolute;
   bottom: 150px;
@@ -15,5 +29,6 @@
 .vertical-text {
   transform: rotate(90deg); /* Rotate the text by 90 degrees */
   white-space: nowrap; /* Prevent the text from wrapping */
+  
 }
 
