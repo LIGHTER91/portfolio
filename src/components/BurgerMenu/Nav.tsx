@@ -14,12 +14,22 @@ const navItems = [
 ];
 
 interface NavProps {
-  onClose: () => void; // Fonction pour fermer le menu
+  onClose: () => void; // Function to close the menu
 }
 
-const Nav: React.FC<NavProps> = () => {
+const Nav: React.FC<NavProps> = ({ onClose }) => {
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
+
+  const handleClick = (href: string) => {
+    console.error(href)
+    setSelectedIndicator(href);
+    if (href === '/portfolio/') {
+      
+      onClose(); 
+      
+    }
+  };
 
   return (
     <motion.div 
@@ -39,9 +49,8 @@ const Nav: React.FC<NavProps> = () => {
               key={index} 
               data={{ ...data, index }} 
               isActive={selectedIndicator === data.href} 
-              setSelectedIndicator={(href) => {
-                setSelectedIndicator(href);
-              }}
+              setSelectedIndicator={setSelectedIndicator} 
+              onClick={() => handleClick(data.href)} // Handle click for INTRO
             />
           ))}
         </div>

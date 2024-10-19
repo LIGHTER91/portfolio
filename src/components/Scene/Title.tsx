@@ -55,7 +55,7 @@ const Title: React.FC<TitleProps> = ({ onComplete }) => {
 
   });
 
-  let currentPosition = -(wordWidth - 0.2) / 2;
+  let currentPosition = -(wordWidth - 0.8) / 2;
 
   return (
     <>

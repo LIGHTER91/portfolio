@@ -3,23 +3,26 @@ import { AnimatePresence } from 'framer-motion';
 import Nav from './Nav'; // Ensure you have this Nav component
 import styles from './BurgerMenu.module.css'; // Adjust the path as needed
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onClose: () => void; // Function to close the menu passed from App.tsx
+}
+
+const Header: React.FC<HeaderProps> = ({ onClose }) => {
   const [isActive, setIsActive] = useState(false);
 
-  // Function to close the navigation menu
-  const handleClose = () => {
-    setIsActive(false);
+  const handleMenuToggle = () => {
+    setIsActive(!isActive);
   };
 
   return (
     <>
-      <div onClick={() => setIsActive(!isActive)} className={styles.button}>
+      <div onClick={handleMenuToggle} className={styles.button}>
         <div className={`${styles.burger} ${isActive ? styles.burgerActive : ''}`}></div>
       </div>
 
       <AnimatePresence mode="wait">
         {isActive && (
-          <Nav onClose={handleClose} />
+          <Nav onClose={onClose} /> 
         )}
       </AnimatePresence>
     </>

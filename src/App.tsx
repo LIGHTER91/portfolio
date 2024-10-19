@@ -1,33 +1,41 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Import your components
 import Header from './components/BurgerMenu/BurgerMenu';
 import Home from './components/Home';
 import Work from './components/Work';
 import About from './components/About';
 import Contact from './components/Contact';
 import DragDetector from './components/Sticky/DragDetector';
-import Transition from './components/Sticky/Transition'; // Import Transition component
+import Transition from './components/Sticky/Transition';
 
 const App = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [hideContent, setHideContent] = useState(false);
 
   const handleDragDown = () => {
-    setShowMenu(true); // Show the transition component
+    setShowMenu(true);
   };
 
   const handleTransitionComplete = () => {
-    // This function can be used if you need to handle anything after the transition
+    // Handle any action after transition completes
+  };
+
+  const handleClose = () => {
+    setShowMenu(false);
+    if(!hideContent){
+      return
+    }
+     // Close the menu
+    setHideContent(true); // Hide the content
   };
 
   useEffect(() => {
     if (showMenu) {
       const timer = setTimeout(() => {
-        setHideContent(true); // Hide content after the transition appears
-      }, 1000); // Adjust based on the animation duration
+        setHideContent(true);
+      }, 1000);
 
       return () => clearTimeout(timer);
     } else {
@@ -38,10 +46,7 @@ const App = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        if (showMenu) {
-          setShowMenu(false);
-          setHideContent(true);
-        }
+        handleClose(); // Close the menu when Escape is pressed
       }
     };
 
@@ -54,7 +59,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+      <Header onClose={handleClose}/>
       <Transition className={showMenu ? 'show' : ''} onTransitionComplete={handleTransitionComplete} />
       {!hideContent && (
         <Routes>

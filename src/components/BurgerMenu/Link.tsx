@@ -12,9 +12,10 @@ interface LinkProps {
   };
   isActive: boolean;
   setSelectedIndicator: (href: string) => void;
+  onClick: () => void; // Add the onClick prop
 }
 
-const LinkComponent: React.FC<LinkProps> = ({ data, isActive, setSelectedIndicator }) => {
+const LinkComponent: React.FC<LinkProps> = ({ data, isActive, setSelectedIndicator, onClick }) => {
   const { title, href, index } = data;
 
   return (
@@ -26,6 +27,7 @@ const LinkComponent: React.FC<LinkProps> = ({ data, isActive, setSelectedIndicat
       initial="initial" 
       animate="enter" 
       exit="exit"
+      onClick={onClick} // Trigger onClick when the link is clicked
     >
       <motion.div 
         variants={scale} 
