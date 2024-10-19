@@ -24,17 +24,14 @@ const App = () => {
 
   const handleClose = () => {
     setShowMenu(false);
-    if(!hideContent){
-      return
-    }
-     // Close the menu
-    setHideContent(true); // Hide the content
+   
   };
 
   useEffect(() => {
     if (showMenu) {
       const timer = setTimeout(() => {
         setHideContent(true);
+        console.log("hidecontent")
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -47,6 +44,12 @@ const App = () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         handleClose(); // Close the menu when Escape is pressed
+      }
+      if (event.key ==='ArrowDown'){
+        handleDragDown();
+      }
+      if (event.key ==='ArrowUp'){
+        handleClose();
       }
     };
 
