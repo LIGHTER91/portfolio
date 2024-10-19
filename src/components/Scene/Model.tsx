@@ -1,9 +1,12 @@
-import { useRef, useState, useMemo } from 'react';
+import { useRef, useState, useMemo, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, MeshTransmissionMaterial } from '@react-three/drei';
 import { Mesh } from 'three';
 import * as THREE from 'three';
 import { useControls } from 'leva';
+
+// Preload the GLTF file
+useGLTF.preload('portfolio/medias/portfolio.glb');
 
 interface GLTFResult {
   nodes: {
@@ -36,9 +39,14 @@ const Model = () => {
   const torusMaterial = <MeshTransmissionMaterial {...materialProps} />;
 
   const torusScale: [number, number, number] = isMobile ? [0.4, 2.5, 0.5] : [1.2, 5, 1.5];
-  let isArrive=false
+  let isArrive = false;
+
+  useEffect(() => {
+    // Preload other assets like textures here if necessary
+  }, []);
+
   useFrame(() => {
-    if (!isMobile && torusRef.current&&isArrive) {
+    if (!isMobile && torusRef.current && isArrive) {
       setTime((prevTime) => prevTime + 0.05);
       torusRef.current.rotation.y = Math.sin(time) * (Math.PI / 80);
       torusRef.current.rotation.z = Math.sin(time) * (Math.PI / 80);
@@ -49,7 +57,7 @@ const Model = () => {
         return prevY + 0.025; 
       } else {
         setOpacity(1);
-        isArrive=true 
+        isArrive = true;
         return prevY; 
       }
     });
@@ -64,7 +72,7 @@ const Model = () => {
             scale={torusScale}
             geometry={geometry}
             position={[0, yPosition, 0.4]}
-            material-opacity={opacity} 
+            material-opacity={opacity}
           >
             {torusMaterial}
           </mesh>

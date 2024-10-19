@@ -14,10 +14,17 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  // Create the `onClose` handler function
+  const handleClose = () => {
+    console.log("Menu closed!");
+    // Handle additional logic for when the menu is closed if necessary
+  };
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
+        {/* Pass the `onClose` function to Header */}
+        <Header onClose={handleClose} />
         {children}
       </body>
     </html>
