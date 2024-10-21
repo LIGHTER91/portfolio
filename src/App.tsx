@@ -61,7 +61,7 @@ const App = () => {
       {!hideContent && (
         <Routes>
           <Route path="/portfolio" element={<Home />} />
-          <Route path="portfolio/work" element={<Work />} />
+          <Route path="portfolio/projects" element={<Work />} />
           <Route path="portfolio/about" element={<About />} />
           <Route path="portfolio/contact" element={<Contact />} />
         </Routes>

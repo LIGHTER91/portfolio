@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
+  font-weight: bold;
+}
+body, .dropdown-menu, .titles-slider, .project-details {
+  font-family: 'PPNeueMontreal', sans-serif;
+}
 .dropdown-menu {
   position: fixed;
   bottom: 0;
@@ -73,3 +81,35 @@
   width: 100%;
   height: 100%;
 }
+.title{
+  font-family: 'PPNeueMontreal';
+  text-transform: uppercase;
+}
+
+.info-projetc {
+  position: relative;
+  z-index: 10;
+
+}
+
+.titles-slider {
+  opacity: 0;
+  font-family: 'PPNeueMontreal';
+  text-transform: uppercase;
+  transform: translateY(20px); /* Légèrement décalé vers le bas au départ */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Transition en douceur */
+}
+
+.titles-slider.show {
+  opacity: 1;
+  transform: translateY(0); /* Revenez à la position normale */
+}
+  .project-details {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Duration of the fade */
+  }
+  
+  .project-details.show {
+    opacity: 1;
+  }
+  

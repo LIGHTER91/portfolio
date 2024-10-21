@@ -10,10 +10,13 @@ interface TransitionProps {
 const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [animateDropdown, setAnimateDropdown] = useState(false);
+  const videoElement = document.createElement('video');
+  videoElement.src = './portfolio/projects/temple.mp4';
+  videoElement.loop = true;
+  videoElement.muted = true; 
   const projects = [
-    { title: 'Project 1', image: './portfolio/projects/test.png' },
-    { title: 'Project 2', image: './portfolio/projects/r.jpeg' },
-    { title: 'Project 3', image: './portfolio/projects/test.png' },
+    { title: 'Détection automatique de pigments par Segmentation Sémantique ', image: videoElement ,sector:'Deep Learning', description:''},
+   
   ];
   useEffect(() => {
     if (className?.includes('show')) {
