@@ -5,19 +5,13 @@ import DropdownMenu from './DropDownMenu';
 interface TransitionProps {
   className?: string;
   onTransitionComplete: () => void;
+  projects: Array<{ title: string, image: HTMLVideoElement, sector: string, readMoreLink: string }>;
 }
 
-const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete }) => {
+const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete ,projects}) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [animateDropdown, setAnimateDropdown] = useState(false);
-  const videoElement = document.createElement('video');
-  videoElement.src = './portfolio/projects/temple.mp4';
-  videoElement.loop = true;
-  videoElement.muted = true; 
-  const projects = [
-    { title: 'Détection automatique de pigments par Segmentation Sémantique ', image: videoElement ,sector:'Deep Learning', description:''},
-   
-  ];
+
   useEffect(() => {
     if (className?.includes('show')) {
       // Affiche le Dropdown après un délai pour laisser le composant se rendre

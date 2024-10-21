@@ -3,9 +3,7 @@
   src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
   font-weight: bold;
 }
-body, .dropdown-menu, .titles-slider, .project-details {
-  font-family: 'PPNeueMontreal', sans-serif;
-}
+
 .dropdown-menu {
   position: fixed;
   bottom: 0;
@@ -26,90 +24,91 @@ body, .dropdown-menu, .titles-slider, .project-details {
   opacity: 1; /* Rendre visible */
 }
 
-.dropdown-menu ul {
-  list-style: none;
-  padding: 20px;
-  margin: 0;
-}
-
-.dropdown-menu li {
-  margin: 10px 0;
-}
-.dropdown-menu.exit {
-  transform: translateY(100%); /* Déplacement vers le bas */
-  opacity: 0; /* Rendre invisible */
-  transition: transform 2s ease, opacity 2s ease; /* Animer la sortie */
-}
 .dropdown-menu {
   position: relative;
-  width: 100%; /* Ajustez en fonction de votre besoin */
-  overflow: hidden; /* Assurez-vous que le contenu en dehors n'est pas visible */
-}
-
-.dropdown-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7); /* Arrière-plan semi-transparent */
-  z-index: 1;
-}
-
-.dropdown-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column; /* Alignement vertical */
-  gap: 10px; /* Espace entre les projets */
-  padding: 20px; /* Ajustez en fonction de votre besoin */
-}
-
-
-.dropdown-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.dropdown-content {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-}
-.title{
-  font-family: 'PPNeueMontreal';
-  text-transform: uppercase;
-}
-
-.info-projetc {
-  position: relative;
-  z-index: 10;
-
 }
 
 .titles-slider {
-  opacity: 0;
+  user-select: none;
+  position: absolute;
+  top: 60%;
+  left: 17%;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 40%;
+  overflow-y: hidden;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0);
   font-family: 'PPNeueMontreal';
   text-transform: uppercase;
-  transform: translateY(20px); /* Légèrement décalé vers le bas au départ */
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Transition en douceur */
 }
 
-.titles-slider.show {
-  opacity: 1;
-  transform: translateY(0); /* Revenez à la position normale */
+.project-title {
+  margin: 250px 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 40px;
+  color: white;
+  background: transparent;
+  border-radius: 5px;
+  font-family: 'PPNeueMontreal';
+  color: rgba(0, 0, 0, 0);
+  -webkit-text-stroke: 1px white; /* Bordure blanche autour du texte */
+  text-stroke: 1px white;
 }
-  .project-details {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out; /* Duration of the fade */
-  }
+
+.project-title.hovered {
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 1px white; /* Bordure blanche autour du texte */
+  text-stroke: 1px white; /* Support pour d'autres navigateurs */
+}
+
+.project-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.685);
+}
+.dropdown-menu {
+  cursor: none; /* Hide the default cursor */
+}
+
+.project-details-div{
+  position: absolute;
+  top: 25%;
+  width: 60%;
+  height: 50%;
+}
+.p-p{
+  position: relative;
+  margin-top: -5%;
+}
+.project-details-h2{
+  font-family: 'PPNeueMontreal';
+  text-transform: uppercase;
+  font-size: 60px;
+  color: #ffffff;
+  -webkit-text-stroke: 1px rgb(255, 255, 255); /* Bordure blanche autour du texte */
+  text-stroke: 1px white; 
   
-  .project-details.show {
-    opacity: 1;
-  }
-  
+}
+
+.project-details.show {
+  display: block;
+}
+.description{
+  text-align: center;
+  font-family: 'PPNeueMontreal';
+  color: rgb(255, 255, 255);
+  width: 30%;
+  margin-left: 35%;
+}
