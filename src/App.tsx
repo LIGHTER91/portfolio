@@ -12,8 +12,14 @@ import DragDetector from './components/Sticky/DragDetector';
 import Transition from './components/Sticky/Transition';
 
 const App = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [hideContent, setHideContent] = useState(false);
+  const [showMenu, setShowMenu] = useState(() => {
+    const savedMenuState = sessionStorage.getItem('showMenu');
+    return savedMenuState === 'true';
+  });
+  const [hideContent, setHideContent] = useState(() => {
+    const savedContentState = sessionStorage.getItem('hideContent');
+    return savedContentState === 'true';
+  });
 
   const videoElement = document.createElement('video');
   videoElement.src = './portfolio/projects/archeovision/temple.mp4';
@@ -39,12 +45,16 @@ const App = () => {
 
   useEffect(() => {
     if (showMenu) {
+      sessionStorage.setItem('showMenu', 'true');
       const timer = setTimeout(() => {
         setHideContent(true);
+        sessionStorage.setItem('hideContent', 'true');
       }, 1000);
       return () => clearTimeout(timer);
     } else {
+      sessionStorage.setItem('showMenu', 'false');
       setHideContent(false);
+      sessionStorage.setItem('hideContent', 'false');
     }
   }, [showMenu]);
 
@@ -65,10 +75,7 @@ const App = () => {
   return (
     <Router>
       <Header onClose={handleClose} />
-      <Transition className={showMenu ? 'show' : ''} projects={projects} onTransitionComplete={handleTransitionComplete} />
-      {!hideContent && (
-        <RoutesWrapper projects={projects} onDragDown={handleDragDown} />
-      )}
+      <RoutesWrapper projects={projects} onDragDown={handleDragDown} showMenu={showMenu} handleTransitionComplete={handleTransitionComplete} hideContent={hideContent} />
     </Router>
   );
 };
@@ -76,32 +83,53 @@ const App = () => {
 interface RoutesWrapperProps {
   projects: Array<{ title: string, image: HTMLVideoElement|string, sector: string, readMoreLink: string }>;
   onDragDown: () => void;
+  showMenu: boolean;
+  handleTransitionComplete: () => void;
+  hideContent: boolean;
 }
 
-const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown }) => {
-  const location = useLocation();
+const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, showMenu, handleTransitionComplete, hideContent }) => {
+  const location = useLocation(); // Utilisez useLocation ici
   const [deactivate, setDeactivate] = useState(false);
 
   useEffect(() => {
-    // Disable DragDetector when on the Work or specific ProjectView component
+    // Désactive DragDetector lorsque sur la route Work ou sur une route ProjectView spécifique
     if (location.pathname.startsWith('/projects')) {
       setDeactivate(true);
       console.log("DragDetector deactivated");
     } else {
       setDeactivate(false);
-      console.log(location.pathname)
+      console.log(location.pathname);
     }
   }, [location.pathname]);
 
+  // Condition pour ne pas afficher Transition si on est sur la route /projects/:id
+  const isProjectViewRoute = location.pathname.startsWith('/projects/');
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Work projects={projects} />} />
-        <Route path="/projects/:id" element={<ProjectView projects={projects}  />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      {/* Affiche Transition seulement si on n'est PAS sur la route ProjectView */}
+      {!isProjectViewRoute && (
+        <Transition className={showMenu ? 'show' : ''} projects={projects} onTransitionComplete={handleTransitionComplete} />
+      )}
+      {!hideContent && (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Work projects={projects} />} />
+          <Route path="/projects/:id" element={<ProjectView projects={projects} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      )}
+      {hideContent && isProjectViewRoute&&(
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Work projects={projects} />} />
+          <Route path="/projects/:id" element={<ProjectView projects={projects} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      )}
       {!deactivate && <DragDetector onDragDown={onDragDown} />}
     </>
   );

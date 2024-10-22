@@ -27,7 +27,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
   const textureRef = useRef<THREE.Texture | null>(null);
   const { projectId } = useParams<{ projectId: string }>(); // Get projectId from URL
   const [currentProject, setCurrentProject] = useState<Project>(projects[0]);
-
+  
   useEffect(() => {
     const project = projects.find((p) => p.readMoreLink?.includes(projectId as string)) || projects[0];
     setCurrentProject(project);

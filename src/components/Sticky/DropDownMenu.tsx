@@ -29,7 +29,10 @@ const Plane: React.FC<{ texture: THREE.Texture }> = ({ texture }) => (
 );
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(() => {
+    const savedIndex = sessionStorage.getItem('currentIndex');
+    return savedIndex ? Number(savedIndex) : 0;
+  });
   const [visible, setVisible] = useState(true);
   const textureRef = useRef<THREE.Texture | null>(null);
   const [targetDistance, setTargetDistance] = useState(5);
@@ -38,14 +41,19 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
   const startY = useRef(0);
   const offsetY = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const scrollPosition = useRef(0);
+const scrollPosition = useRef<number>(sessionStorage.getItem('scrollPosition') ? Number(sessionStorage.getItem('scrollPosition')) : 0);
+
   const [showSlider, setShowSlider] = useState(false);
   const [isTitleHovered, setIsTitleHovered] = useState(false);
+
+  // Persist currentIndex to localStorage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem('currentIndex', currentIndex.toString());
+  }, [currentIndex]);
+
   useEffect(() => {
     const project = projects[currentIndex];
     const loader = new THREE.TextureLoader();
-    console.log(currentIndex)
-    console.log(projects[currentIndex].image)
     if (typeof project.image === 'string') {
       loader.load(project.image, (loadedTexture) => {
         textureRef.current = loadedTexture;
@@ -64,7 +72,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
     let accumulatedDelta = 0;
 
     const handleScroll = (event: WheelEvent) => {
-       return; // Return early if the project view is open
+      return; // Return early if the project view is open
       accumulatedDelta += event.deltaY;
 
       if (accumulatedDelta > 500) {
@@ -86,13 +94,13 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
 
     window.addEventListener('wheel', handleScroll);
     return () => window.removeEventListener('wheel', handleScroll);
-  }, [projects.length]); 
+  }, [projects.length]);
 
   useEffect(() => {
     let holdTimer: NodeJS.Timeout | null = null;
 
     const handleMouseDown = (event: MouseEvent) => {
-     // Return early if the project view is open
+      // Return early if the project view is open
       if (event.button === 0) {
         isMouseDown.current = true;
         startY.current = event.clientY;
@@ -107,7 +115,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
     };
 
     const handleMouseUp = (event: MouseEvent) => {
-     // Return early if the project view is open
+      // Return early if the project view is open
       if (event.button === 0) {
         isMouseDown.current = false;
         if (holdTimer) {
@@ -118,6 +126,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
         const slider = document.querySelector('.titles-slider') as HTMLElement;
         if (slider) {
           scrollPosition.current = slider.scrollTop;
+          sessionStorage.setItem('scrollPosition', slider.scrollTop.toString());
         }
       }
     };
@@ -125,7 +134,6 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
     const mouseSensitivity = 0.07;
 
     const handleMouseMove = (event: MouseEvent) => {
-
       if (isMouseDown.current) {
         const diffY = (event.clientY - startY.current) * mouseSensitivity;
         offsetY.current -= diffY;
@@ -153,7 +161,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
         clearTimeout(holdTimer);
       }
     };
-  }, []); 
+  }, []);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -194,45 +202,50 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
   const currentProject = projects[currentIndex];
 
   return (
-      <div className={`dropdown-menu ${className}`}>
-        <Canvas>
-          {showSlider && (
-            <group>
-              {memoizedSpark}
-              {memoizedStars}
-            </group>
-          )}
-          <CameraController />
-          {textureRef.current && <Plane texture={textureRef.current} />}
-        </Canvas>
-
+    <div className={`dropdown-menu ${className}`}>
+      <Canvas>
         {showSlider && (
-          <div className={`titles-slider ${showSlider ? 'show' : ''}`}>
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className={`project-title ${hoveredIndex === index || currentIndex === index ? 'hovered' : ''}`}
-                onMouseEnter={() => {
-                  setHoveredIndex(index);
-                  setCurrentIndex(index);
-                }}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                {project.title}
-              </div>
-            ))}
-          </div>
+          <group>
+            {memoizedSpark}
+            {memoizedStars}
+          </group>
         )}
+        <CameraController />
+        {textureRef.current && <Plane texture={textureRef.current} />}
+      </Canvas>
 
-        {!showSlider && (
-          <div className={`project-details ${visible ? 'show' : ''}`}>
-            <div className="project-details-div">
-              <h2 className="project-details-h2" onMouseEnter={() => setIsTitleHovered(true)}
-              onMouseLeave={()=>setIsTitleHovered(false)}>{currentProject.title}</h2>
-              {currentProject.sector && <p className='p-p'><strong>Secteur:</strong> {currentProject.sector}</p>}
-              {currentProject.description && <p className='description'>{currentProject.description}</p>}
-              {currentProject.readMoreLink && (
-              <Link to={currentProject.readMoreLink } onClick={(e) => {
+      {showSlider && (
+        <div className={`titles-slider ${showSlider ? 'show' : ''}`}>
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className={`project-title ${hoveredIndex === index || currentIndex === index ? 'hovered' : ''}`}
+              onMouseEnter={() => {
+                setHoveredIndex(index);
+                setCurrentIndex(index);
+              }}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {project.title}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {!showSlider && (
+        <div className={`project-details ${visible ? 'show' : ''}`}>
+          <div className="project-details-div">
+            <h2
+              className="project-details-h2"
+              onMouseEnter={() => setIsTitleHovered(true)}
+              onMouseLeave={() => setIsTitleHovered(false)}
+            >
+              {currentProject.title}
+            </h2>
+            {currentProject.sector && <p className="p-p"><strong>Secteur:</strong> {currentProject.sector}</p>}
+            {currentProject.description && <p className="description">{currentProject.description}</p>}
+            {currentProject.readMoreLink && (
+              <Link to={currentProject.readMoreLink} onClick={(e) => {
                 e.preventDefault();
                 if (currentProject.readMoreLink) {
                   window.location.href = currentProject.readMoreLink;
@@ -242,13 +255,11 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
                 Read more
               </Link>
             )}
-            </div>
           </div>
-        )}
-        <CustomCursor x={mousePosition.x} y={mousePosition.y} isTitleHovered={isTitleHovered} />
-
-      </div>
-  
+        </div>
+      )}
+      <CustomCursor x={mousePosition.x} y={mousePosition.y} isTitleHovered={isTitleHovered} />
+    </div>
   );
 };
 
