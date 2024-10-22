@@ -13,6 +13,7 @@ body,
   overflow-x: hidden ;
 }
 .dropdown-menu {
+  user-select: none;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -56,6 +57,7 @@ body,
 }
 
 .project-title {
+  
   margin: 250px 0;
   padding: 10px 20px;
   cursor: pointer;
@@ -70,6 +72,7 @@ body,
 }
 
 .project-title.hovered {
+  user-select: none;
   color: rgb(255, 255, 255);
   -webkit-text-stroke: 1px white; /* Bordure blanche autour du texte */
   text-stroke: 1px white; /* Support pour d'autres navigateurs */

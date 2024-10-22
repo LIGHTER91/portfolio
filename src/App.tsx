@@ -97,7 +97,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown }) =
       <Routes>
         <Route path="/portfolio" element={<Home />} />
         <Route path="/portfolio/projects" element={<Work projects={projects} />} />
-        <Route path="/portfolio/projects/:id" element={<ProjectView projects={projects}  />} />
+        <Route path="/portfolio/projects/44c3a" element={<ProjectView projects={projects}  />} />
         <Route path="/portfolio/about" element={<About />} />
         <Route path="/portfolio/contact" element={<Contact />} />
       </Routes>
