@@ -231,10 +231,11 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
               {currentProject.sector && <p className='p-p'><strong>Secteur:</strong> {currentProject.sector}</p>}
               {currentProject.description && <p className='description'>{currentProject.description}</p>}
               {currentProject.readMoreLink && (
-              <Link to={currentProject.readMoreLink }onClick={(e) => {
+              <Link to={currentProject.readMoreLink } onClick={(e) => {
                 e.preventDefault();
                 if (currentProject.readMoreLink) {
                   window.location.href = currentProject.readMoreLink;
+                  window.location.reload();
                 }
               }}>
                 Read more
