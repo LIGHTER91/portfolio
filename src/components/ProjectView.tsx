@@ -18,7 +18,7 @@ interface ProjectViewProps {
 
 const Plane: React.FC<{ texture: THREE.Texture }> = ({ texture }) => (
   <mesh>
-    <planeGeometry args={[15, 8]} />
+    <planeGeometry args={[16, 8]} />
     <meshBasicMaterial map={texture} />
   </mesh>
 );

@@ -23,7 +23,7 @@ interface DropdownMenuProps {
 
 const Plane: React.FC<{ texture: THREE.Texture }> = ({ texture }) => (
   <mesh>
-    <planeGeometry attach="geometry" args={[15, 8]} />
+    <planeGeometry attach="geometry" args={[16, 8]} />
     <meshBasicMaterial attach="material" map={texture} />
   </mesh>
 );
