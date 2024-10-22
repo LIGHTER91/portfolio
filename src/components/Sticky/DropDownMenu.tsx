@@ -45,7 +45,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
   useEffect(() => {
     const project = projects[currentIndex];
     const loader = new THREE.TextureLoader();
-
+    console.log(currentIndex)
+    console.log(projects[currentIndex].image)
     if (typeof project.image === 'string') {
       loader.load(project.image, (loadedTexture) => {
         textureRef.current = loadedTexture;

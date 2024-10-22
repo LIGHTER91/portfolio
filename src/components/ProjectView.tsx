@@ -13,7 +13,7 @@ interface Project {
 }
 
 interface ProjectViewProps {
-    projects: Array<{ title: string, image: HTMLVideoElement, sector: string, readMoreLink: string }>;
+    projects: Array<{ title: string, image: HTMLVideoElement|string, sector: string, readMoreLink: string }>;
 }
 
 const Plane: React.FC<{ texture: THREE.Texture }> = ({ texture }) => (
@@ -40,7 +40,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
       });
     } else {
       const videoElement = document.createElement('video');
-      videoElement.src = './portfolio/projects/temple.mp4';
+      videoElement.src = './portfolio/projects/archeovision/temple.mp4';
       videoElement.loop = true;
       videoElement.muted = true;
       const video = videoElement as HTMLVideoElement;

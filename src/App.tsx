@@ -16,13 +16,13 @@ const App = () => {
   const [hideContent, setHideContent] = useState(false);
 
   const videoElement = document.createElement('video');
-  videoElement.src = './portfolio/projects/temple.mp4';
+  videoElement.src = './portfolio/projects/archeovision/temple.mp4';
   videoElement.loop = true;
   videoElement.muted = true;
 
   const projects = [
     { title: 'Détection automatique de pigments par Segmentation Sémantique', image: videoElement, sector: 'Deep Learning', readMoreLink: '/portfolio/#/projects/archeovision' },
-    { title: 'Autre Projet', image: videoElement, sector: 'AI', readMoreLink: '/portfolio/1234' },
+    { title: 'Autre Projet', image: "./portfolio/projects/test.png", sector: 'AI', readMoreLink: '/portfolio/1234' },
   ];
 
   const handleDragDown = () => {
@@ -74,7 +74,7 @@ const App = () => {
 };
 
 interface RoutesWrapperProps {
-  projects: Array<{ title: string, image: HTMLVideoElement, sector: string, readMoreLink: string }>;
+  projects: Array<{ title: string, image: HTMLVideoElement|string, sector: string, readMoreLink: string }>;
   onDragDown: () => void;
 }
 

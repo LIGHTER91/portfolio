@@ -5,7 +5,7 @@ import DropdownMenu from './DropDownMenu';
 interface TransitionProps {
   className?: string;
   onTransitionComplete: () => void;
-  projects: Array<{ title: string, image: HTMLVideoElement, sector: string, readMoreLink: string }>;
+  projects: Array<{ title: string, image: HTMLVideoElement|string, sector: string, readMoreLink: string }>;
 }
 
 const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete ,projects}) => {
