@@ -7,10 +7,10 @@ import Link from './Link';
 import Curve from './Curve';
 
 const navItems = [
-  { title: "INTRO", href: "/portfolio/" },
-  { title: "PROJECTS", href: "portfolio/projects" },
-  { title: "ABOUT", href: "portfolio/about" },
-  { title: "CONTACT", href: "portfolio/contact" },
+  { title: "INTRO", href: "/" },
+  { title: "PROJECTS", href: "/projects" },
+  { title: "ABOUT", href: "/about" },
+  { title: "CONTACT", href: "/contact" },
 ];
 
 interface NavProps {
