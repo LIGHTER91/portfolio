@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onClose }) => {
 
       <AnimatePresence mode="wait">
         {isActive && (
-          <Nav onClose={onClose_MenuToggle} /> 
+          <Nav onClose={onClose_MenuToggle}/> 
         )}
       </AnimatePresence>
     </>

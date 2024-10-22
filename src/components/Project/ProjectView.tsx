@@ -1,28 +1,26 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import './ProjectView.css'; // Make sure to import your CSS
 
 interface ProjectViewProps {
-  projects: Array<{ title: string, image: HTMLVideoElement, sector: string, readMoreLink: string }>;
+  project: {
+    title: string;
+    image: string | HTMLVideoElement;
+    sector?: string;
+    description?: string;
+    readMoreLink?: string;
+  };
+  onClose: () => void;
 }
 
-const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
-  const { id } = useParams<{ id: string }>();
-
-  // Ensure that id is defined before trying to find the project
-  if (!id) {
-    return <div>Error: Project ID not found.</div>;
-  }
-
-  const project = projects.find((project) => project.readMoreLink.includes(id));
-
-  if (!project) {
-    return <div>Project not found</div>;
-  }
-
+const ProjectView: React.FC<ProjectViewProps> = ({ project, onClose }) => {
   return (
-    <div>
-      <h1>{project.title}</h1>
-      <p><strong>Sector:</strong> {project.sector}</p>
+    <div className={`project-view-container ${project ? 'show' : ''}`}>
+      <div className="project-view">
+        <h2>{project.title}</h2>
+        {project.sector && <p><strong>Secteur:</strong> {project.sector}</p>}
+        <p>{project.description}</p>
+        <button onClick={onClose}>Close</button>
+      </div>
     </div>
   );
 };

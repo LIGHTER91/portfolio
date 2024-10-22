@@ -1,0 +1,56 @@
+.project-view-container {
+    position: fixed; /* Fixed position to overlay the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Start hidden */
+    transform: translateY(-100%); /* Start above the viewport */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transition effects */
+    pointer-events: none; /* Prevent interaction when not visible */
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+  }
+  
+  .project-view-container.show {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Slide down into view */
+    pointer-events: auto; /* Allow interaction when visible */
+  }
+  
+  .project-view {
+    background: white; /* Background for the modal */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    max-width: 600px; /* Limit the width */
+    width: 90%; /* Responsive width */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .project-view h2 {
+    margin: 0 0 10px; /* Margin below the title */
+  }
+  
+  .project-view p {
+    margin: 10px 0; /* Margin for paragraphs */
+  }
+  
+  .project-view button {
+    background: #007bff; /* Button background */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .project-view button:hover {
+    background: #0056b3; /* Darker background on hover */
+  }
+  

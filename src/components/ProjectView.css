@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Disable horizontal scrolling */
+  overflow-y: auto; 
+}
+body {
+  margin: 0;
+  overflow:visible; /* Allow scrolling */
+}
+
+.project-view-container {
+  position: relative;
+  min-height: 100vh; 
+  padding-bottom: 20px; 
+  width: 100%;
+  height: 100%;
+}
+
+.additional-text {
+  margin-top: 20px; /* Add space above the text */
+  font-size: 18px;  /* Adjust font size */
+  color: white;     /* Set text color */
+  text-align: center; /* Center the text */
+  font-family: 'PPNeueMontreal'; /* Match your existing font */
+}
