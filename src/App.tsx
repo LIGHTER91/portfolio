@@ -21,7 +21,7 @@ const App = () => {
   videoElement.muted = true;
 
   const projects = [
-    { title: 'Détection automatique de pigments par Segmentation Sémantique', image: videoElement, sector: 'Deep Learning', readMoreLink: '/portfolio/archeovision' },
+    { title: 'Détection automatique de pigments par Segmentation Sémantique', image: videoElement, sector: 'Deep Learning', readMoreLink: '/portfolio/projects/archeovision' },
     { title: 'Autre Projet', image: videoElement, sector: 'AI', readMoreLink: '/portfolio/1234' },
   ];
 
@@ -84,7 +84,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown }) =
 
   useEffect(() => {
     // Disable DragDetector when on the Work or specific ProjectView component
-    if (location.pathname.startsWith('/portfolio/projects')||(location.pathname === '/portfolio/archeovision')) {
+    if (location.pathname.startsWith('/portfolio/projects')) {
       setDeactivate(true);
       console.log("DragDetector deactivated");
     } else {
@@ -97,7 +97,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown }) =
       <Routes>
         <Route path="/portfolio" element={<Home />} />
         <Route path="/portfolio/projects" element={<Work projects={projects} />} />
-        <Route path="/portfolio/archeovision" element={<ProjectView projects={projects}  />} />
+        <Route path="/portfolio/projects/:id" element={<ProjectView projects={projects}  />} />
         <Route path="/portfolio/about" element={<About />} />
         <Route path="/portfolio/contact" element={<Contact />} />
       </Routes>

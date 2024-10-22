@@ -6,7 +6,7 @@ import Spark from '../Scene/Spark';
 import Stars from '../Scene/Star';
 import './DropDownMenu.css';
 import CustomCursor from './CustomCursor';
-
+import { Link } from 'react-router-dom';
 
 extend({ PlaneGeometry });
 
@@ -231,10 +231,13 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
               {currentProject.sector && <p className='p-p'><strong>Secteur:</strong> {currentProject.sector}</p>}
               {currentProject.description && <p className='description'>{currentProject.description}</p>}
               {currentProject.readMoreLink && (
-            <a href={currentProject.readMoreLink}  rel="noopener noreferrer">
-              Read more
-            </a>
-          )}
+  <Link to={currentProject.readMoreLink} onClick={(e) => {
+    e.preventDefault();
+    window.location.href = currentProject.readMoreLink?? '#';;
+  }}>
+    Read more
+  </Link>
+)}
             </div>
           </div>
         )}
