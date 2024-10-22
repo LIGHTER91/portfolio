@@ -72,8 +72,24 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
         </div>
       </div>
       <div className="additional-text">
-        {/* Add any text you want here */}
-        <p>This is some additional text below the project view container.</p>
+        <h3>Contexte et Objectif</h3>
+        <p>
+        Le projet a été développé dans un contexte archéologique
+         pour la détection de pigments invisibles à l'œil nu sur des blocs de pierres historiques. 
+         Ces pigments, découverts grâce à des techniques de numérisation avancées, 
+         fournissent des informations cruciales pour la reconstitution du temple d’Apollon à Delphes. 
+         Mon objectif était de développer un modèle de segmentation d’image permettant de détecter ces pigments avec une haute précision, 
+         tout en réduisant le nombre de faux positifs liés à la présence d’éléments parasites tels que les lichens et la pollution.
+        </p>
+        <h3>Analyse et Approche</h3>
+        <p>
+        Dans l'approche initiale, plusieurs modèles d'apprentissage automatique ont été envisagés, 
+        notamment les architectures de réseaux neuronaux U-Net, Mask R-CNN, 
+        et DeepLab. Chacun de ces modèles a été testé et comparé pour leur capacité à 
+        identifier de petites traces de pigments dans des images complexes. 
+        Ce processus d'évaluation m'a permis de mieux comprendre les performances et les limitations de chaque modèle, 
+        et de choisir la meilleure solution adaptée au projet.
+        </p>
       </div>
     </React.Fragment>
   );

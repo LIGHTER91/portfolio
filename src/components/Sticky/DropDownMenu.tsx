@@ -40,8 +40,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const scrollPosition = useRef(0);
   const [showSlider, setShowSlider] = useState(false);
-
-
+  const [isTitleHovered, setIsTitleHovered] = useState(false);
   useEffect(() => {
     const project = projects[currentIndex];
     const loader = new THREE.TextureLoader();
@@ -228,7 +227,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
         {!showSlider && (
           <div className={`project-details ${visible ? 'show' : ''}`}>
             <div className="project-details-div">
-              <h2 className="project-details-h2">{currentProject.title}</h2>
+              <h2 className="project-details-h2" onMouseEnter={() => setIsTitleHovered(true)}
+              onMouseLeave={()=>setIsTitleHovered(false)}>{currentProject.title}</h2>
               {currentProject.sector && <p className='p-p'><strong>Secteur:</strong> {currentProject.sector}</p>}
               {currentProject.description && <p className='description'>{currentProject.description}</p>}
               {currentProject.readMoreLink && (
@@ -245,7 +245,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
             </div>
           </div>
         )}
-        <CustomCursor x={mousePosition.x} y={mousePosition.y} />
+        <CustomCursor x={mousePosition.x} y={mousePosition.y} isTitleHovered={isTitleHovered} />
+
       </div>
   
   );

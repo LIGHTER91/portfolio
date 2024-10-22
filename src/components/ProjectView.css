@@ -27,7 +27,28 @@ body,
 .additional-text {
   margin-top: 20px; /* Add space above the text */
   font-size: 18px;  /* Adjust font size */
-  color: white;     /* Set text color */
+  color: rgb(0, 0, 0);     /* Set text color */
   text-align: center; /* Center the text */
   font-family: 'PPNeueMontreal'; /* Match your existing font */
+}
+
+.additional-text h3 {
+  font-size: 28px; /* Increase size for emphasis */
+  font-weight: bold; /* Make the heading bold */
+  margin-bottom: 15px; /* Add space below the heading */
+  color: rgb(50, 50, 50); /* Slightly darker color for contrast */
+  font-family: 'PPNeueMontreal'; /* Use the specified font */
+  text-transform: uppercase; /* Capitalize the heading */
+  letter-spacing: 2px; /* Add spacing between letters */
+}
+
+.additional-text p {
+  font-size: 16px; /* Slightly smaller font for paragraphs */
+  line-height: 1.6; /* Increase line spacing for readability */
+  color: rgb(80, 80, 80); /* Softer gray for better readability */
+  margin-bottom: 20px; /* Add space between paragraphs */
+  font-family: 'PPNeueMontreal'; /* Ensure consistent font */
+  max-width: 800px; /* Restrict the width of text */
+  margin-left: auto;
+  margin-right: auto;
 }

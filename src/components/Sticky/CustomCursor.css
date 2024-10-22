@@ -5,14 +5,18 @@
   }
   
 .custom-cursor {
-    position: fixed; /* Use fixed or absolute */
-    width: 25px; /* Size of the cursor circle */
-    height: 25px; /* Size of the cursor circle */
-    background-color: rgba(0, 0, 0); /* Circle color */
+    position: fixed; /* Use fixed or absolute */ /* Size of the cursor circle */ /* Circle color */
     border-radius: 50%; /* Make it round */
     pointer-events: none; /* Prevent it from interfering with mouse events */
     transform: translate(-50%, -50%); /* Center the circle on the mouse pointer */
-    transition: background-color 0.2s; /* Add some transition for hover effect */
+    transition: background-color 0.3s; /* Add some transition for hover effect */
+  }
+
+  
+  .cursor-text {
+    color: white; /* This text will stay white */
+    font-size: 12px;
+    font-family: 'PPNeueMontreal', sans-serif;
   }
   
   .custom-cursor-text {
@@ -37,5 +41,14 @@
     color: #ffffff;
     text-align: center;
     width: max-content;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .fade-in {
+    opacity: 1;
+    transform: translateY(0);
   }
   
+  .fade-out {
+    opacity: 0;
+    transform: translateY(-20px); /* Slide out effect */
+  }
