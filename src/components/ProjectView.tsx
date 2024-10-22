@@ -40,7 +40,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
       });
     } else {
       const videoElement = document.createElement('video');
-      videoElement.src = '../../../portfolio/projects/temple.mp4';
+      videoElement.src = './portfolio/projects/temple.mp4';
       videoElement.loop = true;
       videoElement.muted = true;
       const video = videoElement as HTMLVideoElement;

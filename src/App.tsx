@@ -84,11 +84,12 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown }) =
 
   useEffect(() => {
     // Disable DragDetector when on the Work or specific ProjectView component
-    if (location.pathname.startsWith('/portfolio/#/projects')) {
+    if (location.pathname.startsWith('/projects')) {
       setDeactivate(true);
       console.log("DragDetector deactivated");
     } else {
       setDeactivate(false);
+      console.log(location.pathname)
     }
   }, [location.pathname]);
 
