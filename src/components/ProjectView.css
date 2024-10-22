@@ -14,10 +14,7 @@ body,
   overflow-x: hidden; /* Disable horizontal scrolling */
   overflow-y: auto; 
 }
-body {
-  margin: 0;
-  overflow:visible; /* Allow scrolling */
-}
+
 
 .project-view-container {
   position: relative;
