@@ -97,18 +97,20 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, sho
     // Désactive DragDetector lorsque sur la route Work ou sur une route ProjectView spécifique
     if (location.pathname.startsWith('/projects')) {
       setDeactivate(true);
+      setIsProjectViewRoute(true);
       console.log("DragDetector deactivated");
     } else {
       setDeactivate(false);
+      setIsProjectViewRoute(false)
       console.log(location.pathname);
     }
-  }, [location.pathname]);
+  }, [location.pathname, setIsProjectViewRoute]);
 
   // Condition pour ne pas afficher Transition si on est sur la route /projects/:id
 
     const isProjectViewRoute = location.pathname.startsWith('/projects/');
-    setIsProjectViewRoute(isProjectViewRoute); // Update the state correctly
-
+    // Update the state correctly
+   
 
   return (
     <>
