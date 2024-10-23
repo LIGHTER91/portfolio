@@ -24,7 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className={inter.className}>
         {/* Pass the `onClose` function to Header */}
-        <Header onClose={handleClose} />
+        <Header onClose={handleClose} showMenu={false} isProjectViewRoute={false}/>
         {children}
       </body>
     </html>
