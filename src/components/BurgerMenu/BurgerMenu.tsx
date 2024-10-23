@@ -4,10 +4,12 @@ import Nav from './Nav'; // Ensure you have this Nav component
 import styles from './BurgerMenu.module.css'; // Adjust the path as needed
 
 interface HeaderProps {
-  onClose: () => void; // Function to close the menu passed from App.tsx
+  onClose: () => void;
+  isProjectViewRoute:boolean
+  showMenu:boolean // Function to close the menu passed from App.tsx
 }
 
-const Header: React.FC<HeaderProps> = ({ onClose }) => {
+const Header: React.FC<HeaderProps> = ({ onClose,isProjectViewRoute ,showMenu}) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleMenuToggle = () => {
@@ -27,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ onClose }) => {
 
       <AnimatePresence mode="wait">
         {isActive && (
-          <Nav onClose={onClose_MenuToggle}/> 
+          <Nav onClose={onClose_MenuToggle} showMenu={showMenu} isProjectViewRoute={isProjectViewRoute}/> 
         )}
       </AnimatePresence>
     </>

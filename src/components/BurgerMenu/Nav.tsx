@@ -12,31 +12,28 @@ const navItems = [
   { title: "ABOUT", href: "/about" },
   { title: "CONTACT", href: "/contact" },
 ];
-
 interface NavProps {
-  onClose: () => void; // Function to close the menu
+  onClose: () => void; // Fonction pour fermer le menu
+  showMenu: boolean;
+  isProjectViewRoute: boolean;
 }
 
-const Nav: React.FC<NavProps> = ({ onClose }) => {
+const Nav: React.FC<NavProps> = ({ onClose, showMenu, isProjectViewRoute }) => {
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
   const handleClick = (href: string) => {
     setSelectedIndicator(href);
-    
-    // Close the menu when any link is clicked
-    onClose(); 
-    
-    // You can add any additional logic here if needed
+    onClose(); // Fermer le menu au clic
   };
 
   return (
-    <motion.div 
-      variants={menuSlide} 
-      initial="initial" 
-      animate="enter" 
-      exit="exit" 
-      className={styles.menu}
+    <motion.div
+      variants={menuSlide}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+      className={`${styles.menu} ${showMenu || isProjectViewRoute ? styles.activeMenu : ''}`}
     >
       <div className={styles.body}>
         <div className={styles.nav}>
@@ -44,12 +41,12 @@ const Nav: React.FC<NavProps> = ({ onClose }) => {
             <p>Navigation</p>
           </div>
           {navItems.map((data, index) => (
-            <Link 
-              key={index} 
-              data={{ ...data, index }} 
-              isActive={selectedIndicator === data.href} 
-              setSelectedIndicator={setSelectedIndicator} 
-              onClick={() => handleClick(data.href)} // Handle click for each link
+            <Link
+              key={index}
+              data={{ ...data, index }}
+              isActive={selectedIndicator === data.href}
+              setSelectedIndicator={setSelectedIndicator}
+              onClick={() => handleClick(data.href)} // Gérer le clic sur chaque lien
             />
           ))}
         </div>
@@ -61,5 +58,6 @@ const Nav: React.FC<NavProps> = ({ onClose }) => {
     </motion.div>
   );
 };
+
 
 export default Nav;
