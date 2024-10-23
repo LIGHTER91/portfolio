@@ -71,25 +71,39 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
           </div>
         </div>
       </div>
-      <div className="additional-text">
-        <h3>Contexte et Objectif</h3>
-        <p>
-        Le projet a été développé dans un contexte archéologique
-         pour la détection de pigments invisibles à l'œil nu sur des blocs de pierres historiques. 
-         Ces pigments, découverts grâce à des techniques de numérisation avancées, 
-         fournissent des informations cruciales pour la reconstitution du temple d’Apollon à Delphes. 
-         Mon objectif était de développer un modèle de segmentation d’image permettant de détecter ces pigments avec une haute précision, 
-         tout en réduisant le nombre de faux positifs liés à la présence d’éléments parasites tels que les lichens et la pollution.
-        </p>
-        <h3>Analyse et Approche</h3>
-        <p>
-        Dans l'approche initiale, plusieurs modèles d'apprentissage automatique ont été envisagés, 
-        notamment les architectures de réseaux neuronaux U-Net, Mask R-CNN, 
-        et DeepLab. Chacun de ces modèles a été testé et comparé pour leur capacité à 
-        identifier de petites traces de pigments dans des images complexes. 
-        Ce processus d'évaluation m'a permis de mieux comprendre les performances et les limitations de chaque modèle, 
-        et de choisir la meilleure solution adaptée au projet.
-        </p>
+      <div className="content-sections">
+        <div className="section">
+          <div className="image-left">
+            <img src="./portfolio/projects/archeovision/unet_architecture.png" alt="Context Image 1" />
+          </div>
+          <div className="text-right">
+            <h3>Contexte et Objectif</h3>
+            <p style={{width :'400px'}}>
+            Le projet a été développé dans un contexte archéologique
+             pour la détection de pigments invisibles à l'œil nu sur des blocs de pierres historiques. 
+             Ces pigments, découverts grâce à des techniques de numérisation avancées, 
+             fournissent des informations cruciales pour la reconstitution du temple d’Apollon à Delphes. 
+             Mon objectif était de développer un modèle de segmentation d’image permettant de détecter ces pigments avec une haute précision, 
+             tout en réduisant le nombre de faux positifs liés à la présence d’éléments parasites tels que les lichens et la pollution.
+            </p>
+          </div>
+        </div>
+        <div className="section reverse">
+          <div className="image-right">
+            <img src="./portfolio/projects/archeovision/ptsbleus.png" alt="Approach Image 2" />
+          </div>
+          <div className="text-right">
+            <h3>Analyse et Approche</h3>
+            <p style={{width :'450px'}}>
+            Dans l'approche initiale, plusieurs modèles d'apprentissage automatique ont été envisagés, 
+            notamment les architectures de réseaux neuronaux U-Net, Mask R-CNN, 
+            et DeepLab. Chacun de ces modèles a été testé et comparé pour leur capacité à 
+            identifier de petites traces de pigments dans des images complexes. 
+            Ce processus d'évaluation m'a permis de mieux comprendre les performances et les limitations de chaque modèle, 
+            et de choisir la meilleure solution adaptée au projet.
+            </p>
+          </div>
+        </div>
       </div>
     </React.Fragment>
   );

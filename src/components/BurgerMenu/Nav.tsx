@@ -41,7 +41,7 @@ const Nav: React.FC<NavProps> = ({ onClose }) => {
       <div className={styles.body}>
         <div className={styles.nav}>
           <div className={styles.header}>
-            <p>PROJECT</p>
+            <p>Navigation</p>
           </div>
           {navItems.map((data, index) => (
             <Link 

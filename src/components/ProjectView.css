@@ -52,3 +52,50 @@ body,
   margin-left: auto;
   margin-right: auto;
 }
+.project-view-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-sections {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.section {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.image-left {
+  flex: 1;
+  padding: 20px;
+}
+.image-right {
+  flex: 1;
+  padding: 20px;
+}
+.image-left img {
+  width: 500px;
+  height: auto;
+}
+.image-right img {
+  width: 300px;
+  height: auto;
+}
+.text-right {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+
+
+/* Additional styles for headers, paragraphs, etc., can go here */
