@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { HashRouter as Router, useLocation,Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 
 import Header from './components/BurgerMenu/BurgerMenu';
@@ -20,9 +20,7 @@ const App = () => {
     const savedContentState = sessionStorage.getItem('hideContent');
     return savedContentState === 'true';
   });
-
-  const [isProjectViewRoute, setIsProjectViewRoute] = useState(false); // New state to track project view route
-
+  const [isProjectViewRoute, setIsProjectViewRoute] = useState(false);
   const videoElement = document.createElement('video');
   videoElement.src = './portfolio/projects/archeovision/temple.mp4';
   videoElement.loop = true;
@@ -76,19 +74,11 @@ const App = () => {
 
   return (
     <Router>
-      <Header onClose={handleClose} showMenu={showMenu} isProjectViewRoute={isProjectViewRoute} />
-      <RoutesWrapper 
-        projects={projects} 
-        onDragDown={handleDragDown} 
-        showMenu={showMenu} 
-        handleTransitionComplete={handleTransitionComplete} 
-        hideContent={hideContent} 
-        setIsProjectViewRoute={setIsProjectViewRoute} // Pass down the setter
-      />
+      <Header onClose={handleClose} showMenu={showMenu} isProjectViewRoute={isProjectViewRoute}/>
+      <RoutesWrapper projects={projects} onDragDown={handleDragDown} showMenu={showMenu} handleTransitionComplete={handleTransitionComplete} hideContent={hideContent} setIsProjectViewRoute={setIsProjectViewRoute}/>
     </Router>
   );
 };
-
 
 interface RoutesWrapperProps {
   projects: Array<{ title: string, image: HTMLVideoElement|string, sector: string, readMoreLink: string }>;
@@ -96,28 +86,46 @@ interface RoutesWrapperProps {
   showMenu: boolean;
   handleTransitionComplete: () => void;
   hideContent: boolean;
-  setIsProjectViewRoute: (value: boolean) => void; // New prop for setting project view route
+  setIsProjectViewRoute:(x:boolean) => void;
 }
 
-const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, showMenu, handleTransitionComplete, hideContent, setIsProjectViewRoute }) => {
-  const location = useLocation(); // Use useLocation here
+const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, showMenu, handleTransitionComplete, hideContent,setIsProjectViewRoute }) => {
+  const location = useLocation(); // Utilisez useLocation ici
   const [deactivate, setDeactivate] = useState(false);
 
   useEffect(() => {
-    const isProjectView = location.pathname.startsWith('/projects');
-    setIsProjectViewRoute(isProjectView); // Set the project view route status
-    setDeactivate(isProjectView); // Deactivate DragDetector based on the route
-  }, [location.pathname, setIsProjectViewRoute]);
+    // Désactive DragDetector lorsque sur la route Work ou sur une route ProjectView spécifique
+    if (location.pathname.startsWith('/projects')) {
+      setDeactivate(true);
+      console.log("DragDetector deactivated");
+    } else {
+      setDeactivate(false);
+      console.log(location.pathname);
+    }
+  }, [location.pathname]);
 
-  // Condition for not displaying Transition if on the /projects/:id route
-  const isProjectViewRoute = location.pathname.startsWith('/projects/');
+  // Condition pour ne pas afficher Transition si on est sur la route /projects/:id
+
+    const isProjectViewRoute = location.pathname.startsWith('/projects/');
+    setIsProjectViewRoute(isProjectViewRoute); // Update the state correctly
+
 
   return (
     <>
+      {/* Affiche Transition seulement si on n'est PAS sur la route ProjectView */}
       {!isProjectViewRoute && (
         <Transition className={showMenu ? 'show' : ''} projects={projects} onTransitionComplete={handleTransitionComplete} />
       )}
       {!hideContent && (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Work projects={projects} />} />
+          <Route path="/projects/:id" element={<ProjectView projects={projects} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      )}
+      {hideContent && isProjectViewRoute&&(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Work projects={projects} />} />
