@@ -1,0 +1,25 @@
+
+.custom-cursor-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  cursor: none; /* Hide the default cursor */
+}
+
+.custom-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;  /* Diameter of the cursor */
+  height: 20px; /* Diameter of the cursor */
+  border-radius: 50%;
+  background-color: white; /* Color of the cursor */
+  pointer-events: none; /* The cursor div should not interfere with mouse events */
+  transition: transform 0.1s ease-out;
+  z-index: 999; /* Ensure the cursor is on top */
+}
+
+.canvas {
+ 
+  background: black;
+}

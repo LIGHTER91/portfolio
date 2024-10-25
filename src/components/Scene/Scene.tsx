@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Environment, Html, useProgress } from '@react-three/drei';
+import { Environment, Html, useProgress,Text } from '@react-three/drei';
 import Model from './Model';
 import Spark from './Spark';
 import Stars from './Star';
@@ -45,7 +45,7 @@ const Scene: React.FC = () => {
       {/* Use memoized Spark and Stars to ensure they don't re-render */}
       {memoizedStars}
       {memoizedSpark}
-      
+      <Text fontSize={0.2} position={[0,2,0]}> {"WORK IN PROGRESS"}  </Text>
       {/* Display Title and pass function to show the Model when Title animation completes */}
       <Title onComplete={() => setShowModel(true)} />
 

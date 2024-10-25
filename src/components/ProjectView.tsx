@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useParams } from 'react-router-dom'; // Import useParams
+import { useParams, useNavigate } from 'react-router-dom'; // Import useParams
 import './ProjectView.css';
 
 interface Project {
@@ -13,7 +13,7 @@ interface Project {
 }
 
 interface ProjectViewProps {
-    projects: Array<{ title: string, image: HTMLVideoElement|string, sector: string, readMoreLink: string }>;
+    projects: Array<{ title: string, image: HTMLVideoElement | string, sector: string, readMoreLink: string }>;
 }
 
 const Plane: React.FC<{ texture: THREE.Texture }> = ({ texture }) => (
@@ -27,7 +27,9 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
   const textureRef = useRef<THREE.Texture | null>(null);
   const { projectId } = useParams<{ projectId: string }>(); // Get projectId from URL
   const [currentProject, setCurrentProject] = useState<Project>(projects[0]);
-  
+  const navigate = useNavigate();
+  const [buttonOpacity, setButtonOpacity] = useState(1);
+
   useEffect(() => {
     const project = projects.find((p) => p.readMoreLink?.includes(projectId as string)) || projects[0];
     setCurrentProject(project);
@@ -53,6 +55,30 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
     }
   }, [projects, projectId]); // Depend on projectId
 
+  const handleBackClick = () => {
+    navigate(-1); // Go back to the previous page
+  };
+
+  useEffect(() => {
+    console.log('Setting up scroll listener');
+  
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const newOpacity = Math.max(0, 1 - scrollTop / 200); // Change 200 to adjust the fade speed
+      setButtonOpacity(newOpacity); // Update opacity based on scroll position
+      console.log('Scroll position:', scrollTop); // Log scroll position
+    };
+  
+    window.addEventListener('scroll', handleScroll, true);
+  
+    return () => {
+      console.log('Cleaning up scroll listener');
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, []);
+  
+  
+ 
   return (
     <React.Fragment>
       <div className="project-view-container">
@@ -70,6 +96,17 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
             {currentProject.description && <p className="description">{currentProject.description}</p>}
           </div>
         </div>
+        {buttonOpacity > 0 && (
+  <div
+    className="back-button-container"
+    onClick={handleBackClick}
+    style={{ opacity: buttonOpacity, transition: 'opacity 0.5s ease' }} // Smooth transition
+  >
+    <div className="semi-circle">
+      <div className="cross">+</div>
+    </div>
+  </div>
+)}
       </div>
       <div className="content-sections">
         <div className="section">
@@ -78,13 +115,8 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
           </div>
           <div className="text-right">
             <h3>Contexte et Objectif</h3>
-            <p style={{width :'400px'}}>
-            Le projet a été développé dans un contexte archéologique
-             pour la détection de pigments invisibles à l'œil nu sur des blocs de pierres historiques. 
-             Ces pigments, découverts grâce à des techniques de numérisation avancées, 
-             fournissent des informations cruciales pour la reconstitution du temple d’Apollon à Delphes. 
-             Mon objectif était de développer un modèle de segmentation d’image permettant de détecter ces pigments avec une haute précision, 
-             tout en réduisant le nombre de faux positifs liés à la présence d’éléments parasites tels que les lichens et la pollution.
+            <p style={{ width: '400px' }}>
+              Le projet a été développé dans un contexte archéologique pour la détection de pigments invisibles à l'œil nu sur des blocs de pierres historiques. Ces pigments, découverts grâce à des techniques de numérisation avancées, fournissent des informations cruciales pour la reconstitution du temple d’Apollon à Delphes. Mon objectif était de développer un modèle de segmentation d’image permettant de détecter ces pigments avec une haute précision, tout en réduisant le nombre de faux positifs liés à la présence d’éléments parasites tels que les lichens et la pollution.
             </p>
           </div>
         </div>
@@ -94,13 +126,8 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
           </div>
           <div className="text-right">
             <h3>Analyse et Approche</h3>
-            <p style={{width :'450px'}}>
-            Dans l'approche initiale, plusieurs modèles d'apprentissage automatique ont été envisagés, 
-            notamment les architectures de réseaux neuronaux U-Net, Mask R-CNN, 
-            et DeepLab. Chacun de ces modèles a été testé et comparé pour leur capacité à 
-            identifier de petites traces de pigments dans des images complexes. 
-            Ce processus d'évaluation m'a permis de mieux comprendre les performances et les limitations de chaque modèle, 
-            et de choisir la meilleure solution adaptée au projet.
+            <p style={{ width: '450px' }}>
+              Dans l'approche initiale, plusieurs modèles d'apprentissage automatique ont été envisagés, notamment les architectures de réseaux neuronaux U-Net, Mask R-CNN, et DeepLab. Chacun de ces modèles a été testé et comparé pour leur capacité à identifier de petites traces de pigments dans des images complexes. Ce processus d'évaluation m'a permis de mieux comprendre les performances et les limitations de chaque modèle, et de choisir la meilleure solution adaptée au projet.
             </p>
           </div>
         </div>

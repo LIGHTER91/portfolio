@@ -34,6 +34,7 @@ body,
   opacity: 1; /* Rendre visible */
 }
 
+
 .dropdown-menu {
   position: relative;
 
@@ -114,6 +115,9 @@ body,
   text-stroke: 1px white; 
   
 }
+
+
+
 
 .project-details.show {
   display: block;

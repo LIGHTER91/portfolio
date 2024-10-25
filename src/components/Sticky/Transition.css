@@ -3,7 +3,9 @@
     bottom: 0; /* Starts from the bottom of the screen */
     left: 0;
     right: 0;
-    background: rgb(255, 255, 255); /* White background */
+    background: linear-gradient(91deg,#fff800,#f70606,#f75706,#f7067b,#a506f7,#0609f7);
+    background-size: 360% 360%;
+    animation: gradient-animation 5s ease infinite; /* White background */
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(100%); /* Move out of the screen */
     transition: transform 1s ease; 
@@ -15,4 +17,17 @@
   
   .transition.show {
     transform: translateY(0); /* Move into view */
+  }
+
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
