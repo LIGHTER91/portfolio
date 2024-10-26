@@ -23,7 +23,7 @@ const Background = ({ image, opacity, animated = false }: BackgroundProps) => {
   });
 
   return (
-    <mesh position={[0, -10, -100]} scale={[14, 8, 0.1]}>
+    <mesh position={[0, -10, -100]} scale={[16, 10, 0.1]}>
       <planeGeometry args={[20, 20]} />
       <meshBasicMaterial ref={materialRef} map={texture} transparent opacity={opacity} />
     </mesh>
