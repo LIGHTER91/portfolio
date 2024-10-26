@@ -18,7 +18,7 @@ const Background = ({ image, opacity, animated = false }: BackgroundProps) => {
 
   useFrame(({ clock }) => {
     if (animated && materialRef.current) {
-      materialRef.current.opacity = 0.8 + 0.5 * Math.sin(clock.elapsedTime);
+      materialRef.current.opacity = 0.4 + 0.3 * Math.sin(clock.elapsedTime);
     }
   });
 
@@ -70,16 +70,16 @@ const About = () => {
  
 
   // State for the custom cursor position
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const updateCursor = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
     };
 
-    window.addEventListener('mousemove', updateCursor);
+    window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      window.removeEventListener('mousemove', updateCursor);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
   const memoizedSpark = useMemo(() => <Spark />, []);
@@ -89,7 +89,7 @@ const About = () => {
       <div
         className="custom-cursor"
         style={{
-          transform: `translate3d(${cursorPosition.x}px, ${cursorPosition.y}px, 0)`,
+          transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
         }}
       />
       <Canvas className="canvas">
@@ -100,7 +100,34 @@ const About = () => {
         <Background image="./portfolio/about/background.jpg" opacity={0.5} />
         <Background image="./portfolio/about/overlay.png" opacity={0.95} animated />
         <InteractiveScene />
-      </Canvas>
+      </Canvas><div className="retro-container scanline-effect">
+        <header>
+            <h1></h1>
+            <nav >
+                <ul>
+                    <li><a>PROFILE</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="screen-1">
+                <article>
+                    <header>
+                        <h2>SCREEN 1</h2>
+                    </header>
+                    <div className="content">
+                        Lorem ipsum...
+                    </div>
+                    <figure>
+                        
+                    </figure>
+                </article>
+            </section>
+        </main>
+        <footer>
+            <p></p>
+        </footer>
+    </div>
     </div>
   );
 };

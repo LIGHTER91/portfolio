@@ -1,4 +1,9 @@
 
+@font-face {
+  font-family: 'h_calc_5*7';
+  src: url('/portfolio/fonts/h_calc57.ttf') format('opentype');
+  font-weight: bold;
+}
 .custom-cursor-container {
   position: relative;
   width: 100vw;
@@ -10,16 +15,73 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 20px;  /* Diameter of the cursor */
-  height: 20px; /* Diameter of the cursor */
+  width: 15px;  /* Diameter of the cursor */
+  height: 15px; /* Diameter of the cursor */
   border-radius: 50%;
   background-color: white; /* Color of the cursor */
   pointer-events: none; /* The cursor div should not interfere with mouse events */
   transition: transform 0.1s ease-out;
-  z-index: 999; /* Ensure the cursor is on top */
+  z-index: 5; /* Ensure the cursor is on top */
 }
 
 .canvas {
  
   background: black;
 }
+div.retro-container {
+  font-family: 'h_calc_5*7';
+  box-shadow: inset 0px 0px 2rem rgba(0, 255, 42, 0.2); 
+
+    background-image: linear-gradient(0deg, #ff000000 10%, rgba(0, 255, 42, 0.067) 90%, #00ff3707 100%);
+    animation: crtAnimation 100s linear infinite;
+    background-size: 100% 80%;
+  position: fixed;
+  width: 20%;
+  height: 60%;
+  top:25%;
+  left: 10%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  padding: 0.5rem;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  mask-image: linear-gradient(to bottom, #0005 50%, #000 50%);
+  mask-size: 100% 2px;
+  text-shadow: 0 0 0.5rem;
+  z-index: 5;
+}
+
+header,
+footer {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+}
+
+header nav ul li a{
+  position: fixed;
+  
+  font-size: 50px;
+  text-align: center;
+  color: rgb(0, 255, 42);
+}
+section {
+  height: 100%;
+  overflow: hidden auto;
+  margin: 1rem 0;
+  font-size: large;
+  color: rgb(0, 255, 42);
+}
+@keyframes crtAnimation {
+  0% {
+      background-position: 0 0;
+  }
+
+  100% {
+      background-position: 0 10000%;
+  }
+}
+
+
