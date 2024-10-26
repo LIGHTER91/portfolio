@@ -113,13 +113,16 @@ const About = () => {
             <section id="screen-1">
                 <article>
                     <header>
-                        <h2>SCREEN 1</h2>
+                        <h2>Lucien Lachaud</h2>
                     </header>
                     <div className="content">
-                        Lorem ipsum...
+                        Né à Bordeaux
+                        <h2>Formation :</h2>
+                        Licence Informatique 2020-2023<br/>
+                        Master Informatique spec IA 2023-2025
                     </div>
                     <figure>
-                        
+                 
                     </figure>
                 </article>
             </section>
