@@ -27,12 +27,12 @@
 }
 
 #card1 {
-  background-image: url('./portfolio/contact/cards/linkdin.jpeg');
+  background-image: url('/portfolio/contact/cards/linkdin.jpeg');
   background-size: cover;
   background-position: center;
 }
 #card2 {
-  background-image: url('./portfolio/contact/cards/mail.jpeg');
+  background-image: url('/portfolio/contact/cards/mail.jpeg');
   background-size: cover;
   background-position: center;
 }
