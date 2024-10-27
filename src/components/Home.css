@@ -29,6 +29,6 @@
 .vertical-text {
   transform: rotate(90deg); /* Rotate the text by 90 degrees */
   white-space: nowrap; /* Prevent the text from wrapping */
-  
+ 
 }
 

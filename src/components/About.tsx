@@ -1,6 +1,6 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
+import { useTexture,Text } from '@react-three/drei';
 import * as THREE from 'three';
 import Spark from './Scene/Spark';
 import Stars from './Scene/Star';
@@ -30,7 +30,7 @@ const Background = ({ image, opacity, animated = false }: BackgroundProps) => {
   );
 };
 
-const InteractiveScene = () => {
+const InteractiveScene = ({onFranceClick}) => {
   const { raycaster, mouse, scene, camera } = useThree();
   const franceMeshRef = useRef<THREE.Mesh>(null);
 
@@ -43,7 +43,8 @@ const InteractiveScene = () => {
 
       const intersects = raycaster.intersectObjects(scene.children, true);
       if (intersects.length > 0 && intersects[0].object === franceMeshRef.current) {
-        console.log('France clicked!');
+        onFranceClick()
+        console.log("clickerd")
       }
     };
 
@@ -52,11 +53,11 @@ const InteractiveScene = () => {
     return () => {
       window.removeEventListener('click', handleMouseClick);
     };
-  }, [raycaster, mouse, camera, scene]);
+  }, [raycaster, mouse, camera, scene,onFranceClick]);
 
   return (
     <group>
-      <mesh ref={franceMeshRef} position={[-0.2, 1.5, -1]} scale={0.6}>
+      <mesh ref={franceMeshRef} position={[-0.2, 2, -1]} scale={0.6}>
         <boxGeometry args={[1, 1, 1]} />
         <meshBasicMaterial color='green' transparent opacity={0} />
       </mesh>
@@ -66,15 +67,56 @@ const InteractiveScene = () => {
 
 const About = () => {
   const categories = [
-    { name: "Frontend", skills: ["HTML", "CSS", "JavaScript", "React","Vuejs"] },
-    { name: "Backend", skills: ["Java", "Spring boot", "Python"] },
-    { name: "Data Science", skills: ["Python", "Pandas", "TensorFlow", "PyTorch"] },
+    {
+      name: "Data Science",
+      skills: [
+        { name: "Python", level: 4, description: "Utilisé pour le traitement et l'analyse de données." },
+        { name: "Pandas", level: 4, description: "Utilisé dans des projets académiques de machine learning,prétraitement de données et gestion de base de données." },
+        { name: "TensorFlow", level: 3, description: "Utilisé pour construire des modèles de machine learning." },
+        { name: "PyTorch", level: 4, description: "Utilisé pour mes travaux dirigé et mes projets acadèmiques dans le domaine du deep learning." },
+      ],
+      
+    },
+    {
+      name: "Learning Reinforcement",
+      skills: [
+        { name: "Python", level: 4, description: "Utilisé pour le traitement et l'analyse de données." },
+        { name: "Deep LR", level: 3, description: "Utilisation dans projets sur des agents Qlearning,SARSA,MonteCarlo pour entraînement sur des environnements diverses." },
+        { name: "Notion", level: 4, description: "Notion mathèmatiques des différents agents,formules ,environnements." },
+      ],
+      
+    },
+    {
+      name: "Backend",
+      skills: [
+        { name: "Java", level: 4, description: "Utilisé pour développer des applications d'entreprise." },
+        { name: "Spring Boot", level: 3, description: "Utilisé pour construire des microservices." },
+        { name: "Python", level: 4, description: "Utilisé pour le développement d'applications et l'analyse de données." },
+      ],
+    },
+    {
+      name: "Frontend",
+      skills: [
+        { name: "HTML", level: 5, description: "Utilisé pour créer la structure des pages web." },
+        { name: "CSS", level: 4, description: "Utilisé pour styliser les pages et rendre les sites responsives." },
+        { name: "JavaScript", level: 3, description: "Utilisé pour ajouter de l'interactivité aux pages web." },
+        { name: "React", level: 4, description: "Utilisé pour construire des interfaces utilisateur dynamiques." },
+        { name: "Vuejs", level: 4, description: "Utilisé pour développer des applications web avec une approche progressive." },
+      ],
+    },
   ];
+  
 
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const [screenExpanded, setScreenExpanded] = useState(false);
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  const currentSkill = categories[currentCategoryIndex].skills[currentLevel];
+  const handleFranceClick = () => {
+    setScreenExpanded(true);
+    setTimeout(() => setLoadingComplete(true), 3000);
+  };
   const handleDPadClick = (direction: string) => {
     if (direction === "up") {
       setCurrentLevel((prevLevel) => Math.max(prevLevel - 1, 0));
@@ -91,7 +133,7 @@ const About = () => {
 
   const SkillCubes = () => {
     const skillLevel = categories[currentCategoryIndex].skills;
-
+  
     return (
       <div className="skill-cube-container">
         {skillLevel.map((skill, index) => (
@@ -99,7 +141,8 @@ const About = () => {
             key={index}
             className={`skill-cube ${index === currentLevel ? "active-skill" : ""}`}
           >
-            <div className="skill-label">{skill}</div>
+            <div className="skill-label">{skill.name}</div>
+          
           </div>
         ))}
       </div>
@@ -135,9 +178,14 @@ const About = () => {
         </group>
         <Background image="./portfolio/about/background.jpg" opacity={0.5} />
         <Background image="./portfolio/about/overlay.png" opacity={0.95} animated />
-        <InteractiveScene />
+        <InteractiveScene  onFranceClick={handleFranceClick}/>
       </Canvas>
-      <div className="retro-container scanline-effect" id='big'>
+      <div className="drag-down-indicator">
+        <span className="vertical-text">Clique sur la France</span>
+      </div>
+       <div className={`retro-container scanline-effect ${screenExpanded ? 'expanded' : ''}`} id="big">
+      {loadingComplete ? (
+        <>
         <div className="retro-container scanline-effect" id='nav_retro'>
           <header>
             <h1></h1>
@@ -183,7 +231,26 @@ const About = () => {
         <div className="retro-container scanline-effect" id='screen_skills'>
           <h2>{categories[currentCategoryIndex].name}</h2>
           <SkillCubes />
+          <div className="skill-info">
+            <p className='skill-level'>Niveau de connaissance: {[...Array(5)].map((_, pointIndex) => (
+              
+              <div
+                
+                key={pointIndex}
+                className={`skill-point ${pointIndex < currentSkill.level ? "green" : "blue-black"}`}
+              />
+            ))}</p>
+            <p className='skill-infop'>Utilisations:<br/>{currentSkill.description}</p>
+            
+          </div>
         </div>
+        </>
+         ) : (!loadingComplete && (
+          <div className="retro-container scanline-effect" id="loading-bar-container">
+            <div id="loading-bar" />
+          </div>
+          
+        ))}
       </div>
     </div>
   );

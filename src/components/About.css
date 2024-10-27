@@ -87,13 +87,13 @@ section {
 
 }
 #big {
-  user-select: none;
   background-image: linear-gradient(0deg, #ff000000 10%, rgba(0, 255, 42, 0.067) 90%, #00ff3707 100%);
-  animation: crtAnimation 100s linear infinite;
   background-size: 100% 80%;
+  animation:expandScreen 1s forwards, crtAnimation 100s linear infinite !important;
+  opacity: 0;
+  user-select: none;
+
   display: grid;
-  width: 80%;
-  height: 80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -136,9 +136,14 @@ section {
   width: 100%;
   height: 100%;
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 12rem;
   justify-content: center;
   align-items: center;
+  border: 1px solid;
+  border-image: linear-gradient(to right, #00CC22 , #006d09 , #00CC22 ) 1; /* Adjust colors as needed */
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 #window2 {
   display: flex;
@@ -190,6 +195,9 @@ section {
 
 
 .skill-cube-container {
+  position: relative;
+  top: 30%;
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -224,4 +232,109 @@ section {
 .skill-label {
   text-align: center;
   
+}
+@keyframes expandScreen {
+  0% {
+    width: 1%;
+    height: 1%;
+    opacity: 0;
+  }
+  100% {
+    width: 80%;
+    height: 80%;
+    opacity: 1;
+  }
+}
+
+@keyframes loadingBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.loading-bar {
+  width: 0;
+  height: 10px;
+  background-color: #00CC22;
+  animation: loadingBar 2s forwards;
+}
+#big:not(.expanded) {
+  display: none;
+}
+/* Conteneur de la barre de chargement */
+#loading-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2); /* Optionnel : pour une légère ombre de fond */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Barre de chargement */
+#loading-bar {
+  height: 100%;
+  width: 0; /* On commence à 0 pour animer l'extension */
+  background-color: #4CAF50; /* Couleur de la barre de chargement */
+  animation: load 3s ease-in-out forwards; /* Animation de chargement */
+  border-radius: 10px;
+}
+
+/* Animation de chargement */
+@keyframes load {
+  from {
+      width: 0;
+  }
+  to {
+      width: 100%;
+  }
+}
+
+#big.expanded {
+  width: 1%;
+  height: 1%;
+  opacity: 0;
+  animation: expandScreen 1s forwards, crtAnimation 100s linear infinite;
+  
+ 
+}
+.skill-info {
+  flex-grow: 2;
+
+  font-size: 1.2em;
+  color: #00CC22; /* Choisissez une couleur qui contraste avec le texte principal */
+ 
+  
+  width: 100%;
+}
+.skill-infop {
+  position: fixed;
+}
+.skill-level{
+  display: flex;
+  align-items: center;
+  
+}
+.skill-point {
+  width: 10px; /* Adjust size as needed */
+  height: 10px; /* Adjust size as needed */
+  margin: 2px; /* Space between points */
+  border-radius: 50%; /* Make them circular */
+}
+
+.green {
+  background-color: green;
+}
+
+.blue-black {
+  background-color: #ffd700; /* Adjust this for the exact blue-black you want */
 }
