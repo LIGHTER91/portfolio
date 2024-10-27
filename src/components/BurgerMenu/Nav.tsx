@@ -51,7 +51,7 @@ const Nav: React.FC<NavProps> = ({ onClose, showMenu, isProjectViewRoute }) => {
           ))}
         </div>
         <div className={styles.footer}>
-          <a href="https://www.linkedin.com/in/lucien-lachaud-330273257/">LinkedIn</a>
+          
         </div>
       </div>
       <Curve />

@@ -1,0 +1,21 @@
+.scene{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+.contact-container {
+    width: 100vw;
+    height: 100vh;
+}
+.card-container{
+    display: flex;
+    justify-content: center; /* Centrer les cartes */
+    align-items: center; /* Aligner verticalement si nécessaire */
+    gap: 20px; /* Espacement entre les cartes */
+    flex-wrap: wrap; 
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    gap: 100px;
+}

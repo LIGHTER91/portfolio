@@ -84,7 +84,7 @@ const About = () => {
     {
       name: "Learning Reinforcement",
       skills: [
-        { name: "Python", level: 4, description: "Utilisé pour le traitement et l'analyse de données." },
+        { name: "Python", level: 4, description: "Langage de programmation utilisé dans ce domaine." },
         { name: "Deep LR", level: 3, description: "Utilisation dans projets sur des agents Qlearning,SARSA,MonteCarlo pour entraînement sur des environnements diverses." },
         { name: "Notion", level: 4, description: "Notion mathèmatiques des différents agents,formules ,environnements." },
       ],
@@ -95,7 +95,7 @@ const About = () => {
       skills: [
         { name: "Java", level: 4, description: "Utilisé pour développer des applications d'entreprise." },
         { name: "Spring Boot", level: 3, description: "Utilisé pour construire des microservices." },
-        { name: "Python", level: 4, description: "Utilisé pour le développement d'applications et l'analyse de données." },
+        { name: "Flask", level: 4, description: "Utilisé dans des projets de gestion de base de données" },
       ],
     },
     {

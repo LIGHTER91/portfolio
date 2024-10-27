@@ -104,7 +104,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, sho
       setIsProjectViewRoute(false)
       console.log(location.pathname);
     }
-    if (location.pathname.startsWith('/about'))  {
+    if (location.pathname.startsWith('/about')||location.pathname.startsWith('/contact'))  {
       setDeactivate(true);
       setIsProjectViewRoute(false);
       console.log("DragDetector deactivated");
