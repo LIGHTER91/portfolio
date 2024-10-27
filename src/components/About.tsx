@@ -1,10 +1,11 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useTexture,Text } from '@react-three/drei';
+import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import Spark from './Scene/Spark';
 import Stars from './Scene/Star';
 import './About.css';
+import React from 'react';
 
 interface BackgroundProps {
   image: string;
@@ -29,8 +30,11 @@ const Background = ({ image, opacity, animated = false }: BackgroundProps) => {
     </mesh>
   );
 };
+interface InteractiveSceneProps {
+  onFranceClick: () => void; // Define the type as a function that returns void
+}
 
-const InteractiveScene = ({onFranceClick}) => {
+const InteractiveScene: React.FC<InteractiveSceneProps> = ({ onFranceClick }) => {
   const { raycaster, mouse, scene, camera } = useThree();
   const franceMeshRef = useRef<THREE.Mesh>(null);
 
@@ -43,8 +47,8 @@ const InteractiveScene = ({onFranceClick}) => {
 
       const intersects = raycaster.intersectObjects(scene.children, true);
       if (intersects.length > 0 && intersects[0].object === franceMeshRef.current) {
-        onFranceClick()
-        console.log("clickerd")
+        onFranceClick(); // Call the passed function
+        console.log("clickerd");
       }
     };
 
@@ -53,7 +57,7 @@ const InteractiveScene = ({onFranceClick}) => {
     return () => {
       window.removeEventListener('click', handleMouseClick);
     };
-  }, [raycaster, mouse, camera, scene,onFranceClick]);
+  }, [raycaster, mouse, camera, scene, onFranceClick]);
 
   return (
     <group>
