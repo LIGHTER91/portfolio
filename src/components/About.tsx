@@ -56,8 +56,6 @@ const InteractiveScene = () => {
 
   return (
     <group>
-    
-      {/* Define the France region with a unique mesh */}
       <mesh ref={franceMeshRef} position={[-0.2, 1.5, -1]} scale={0.6}>
         <boxGeometry args={[1, 1, 1]} />
         <meshBasicMaterial color='green' transparent opacity={0} />
@@ -67,10 +65,46 @@ const InteractiveScene = () => {
 };
 
 const About = () => {
- 
+  const categories = [
+    { name: "Frontend", skills: ["HTML", "CSS", "JavaScript", "React","Vuejs"] },
+    { name: "Backend", skills: ["Java", "Spring boot", "Python"] },
+    { name: "Data Science", skills: ["Python", "Pandas", "TensorFlow", "PyTorch"] },
+  ];
 
-  // State for the custom cursor position
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleDPadClick = (direction: string) => {
+    if (direction === "up") {
+      setCurrentLevel((prevLevel) => Math.max(prevLevel - 1, 0));
+    } else if (direction === "down") {
+      setCurrentLevel((prevLevel) => Math.min(prevLevel + 1, categories[currentCategoryIndex].skills.length - 1));
+    } else if (direction === "left") {
+      setCurrentCategoryIndex((prevIndex) => (prevIndex === 0 ? categories.length - 1 : prevIndex - 1));
+      setCurrentLevel(0);
+    } else if (direction === "right") {
+      setCurrentCategoryIndex((prevIndex) => (prevIndex + 1) % categories.length);
+      setCurrentLevel(0);
+    }
+  };
+
+  const SkillCubes = () => {
+    const skillLevel = categories[currentCategoryIndex].skills;
+
+    return (
+      <div className="skill-cube-container">
+        {skillLevel.map((skill, index) => (
+          <div
+            key={index}
+            className={`skill-cube ${index === currentLevel ? "active-skill" : ""}`}
+          >
+            <div className="skill-label">{skill}</div>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -82,8 +116,10 @@ const About = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
   const memoizedSpark = useMemo(() => <Spark />, []);
   const memoizedStars = useMemo(() => <Stars />, []);
+
   return (
     <div className="custom-cursor-container">
       <div
@@ -100,37 +136,55 @@ const About = () => {
         <Background image="./portfolio/about/background.jpg" opacity={0.5} />
         <Background image="./portfolio/about/overlay.png" opacity={0.95} animated />
         <InteractiveScene />
-      </Canvas><div className="retro-container scanline-effect">
-        <header>
+      </Canvas>
+      <div className="retro-container scanline-effect" id='big'>
+        <div className="retro-container scanline-effect" id='nav_retro'>
+          <header>
             <h1></h1>
-            <nav >
-                <ul>
-                    <li><a>PROFILE</a></li>
-                </ul>
+            <nav>
+              <ul>
+                <li><a>PROFILE</a></li>
+              </ul>
+              <ul>
+                <li><a>COMPETENCES</a></li>
+              </ul>
             </nav>
-        </header>
-        <main>
+            
+          </header>
+        </div>
+        <div className="retro-container scanline-effect" id='window1'>
+          <main>
             <section id="screen-1">
-                <article>
-                    <header>
-                        <h2>Lucien Lachaud</h2>
-                    </header>
-                    <div className="content">
-                        Né à Bordeaux
-                        <h2>Formation :</h2>
-                        Licence Informatique 2020-2023<br/>
-                        Master Informatique spec IA 2023-2025
-                    </div>
-                    <figure>
-                 
-                    </figure>
-                </article>
+              <article>
+                <header>
+                  <h2>Lucien Lachaud</h2>
+                </header>
+                <div className="content">
+                  Né à Bordeaux
+                  <h2>Formation :</h2>
+                  Licence Informatique 2020-2023<br/>
+                  Master Informatique spec IA 2023-2025
+                </div>
+              </article>
             </section>
-        </main>
-        <footer>
+          </main>
+          <footer>
             <p></p>
-        </footer>
-    </div>
+          </footer>
+        </div>
+        <div className="retro-container scanline-effect" id='window2'>
+          <div className="dpad">
+            <button className="dpad-btn" id="up" onClick={() => handleDPadClick("left")}>▲</button>
+            <button className="dpad-btn" id="left" onClick={() => handleDPadClick("up")}>◄</button>
+            <button className="dpad-btn" id="right" onClick={() => handleDPadClick("down")}>►</button>
+            <button className="dpad-btn" id="down" onClick={() => handleDPadClick("right")}>▼</button>
+          </div>
+        </div>
+        <div className="retro-container scanline-effect" id='screen_skills'>
+          <h2>{categories[currentCategoryIndex].name}</h2>
+          <SkillCubes />
+        </div>
+      </div>
     </div>
   );
 };
