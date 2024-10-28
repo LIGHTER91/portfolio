@@ -1,81 +1,152 @@
 @font-face {
-    font-family: 'PPNeueMontreal';
-    src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
-    font-weight: bold;
-  }
-  @font-face {
-    font-family: 'h_calc_5*7';
-    src: url('/portfolio/fonts/h_calc57.ttf') format('opentype');
-    font-weight: bold;
-  }
-.menu{
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(0, 0, 0, 1);
-     /*background-color: rgb(7 0 43);*/
-    position: fixed;
-    right: 0;
-    top: 0;
-    color: white;
-    z-index: 101;
-    .body{
-        box-sizing: border-box;
-        height: 100%;
-        padding: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .nav{
-            display: flex;
-            flex-direction: column;
-            font-size: 56px;
-            gap: 12px;
-            margin-top: 80px;
-
-            .header{
-                color: rgb(153, 153, 153);
-                border-bottom: 1px solid rgb(153, 153, 153);
-                text-transform: uppercase;
-                font-size: 13px;
-                margin-bottom: 40px;
-                font-family: 'PPNeueMontreal'
-            }
-
-            a{
-                text-decoration: none;
-                font-family: 'PPNeueMontreal', 'Share Tech Mono', monospace;
-                color: white;
-                font-weight: 300;
-            }
-            
-        }
-    }
-    .footer{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        font-size: 12px;
-        gap: 40px;
-    }
+  font-family: 'PPNeueMontreal';
+  src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'h_calc_5*7';
+  src: url('/portfolio/fonts/h_calc57.ttf') format('opentype');
+  font-weight: bold;
 }
 
-  
-  
-  .activeMenu {
-    background: linear-gradient(91deg,#fff800,#f70606,#f75706,#f7067b,#a506f7,#0609f7);
-    background-size: 360% 360%;
-    animation: gradient-animation 10s ease infinite;
+.menu {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0, 1);
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: white;
+  z-index: 101;
+
+  .body {
+      box-sizing: border-box;
+      height: 100%;
+      padding: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .nav {
+          display: flex;
+          flex-direction: column;
+          font-size: 56px;
+          gap: 12px;
+          margin-top: 80px;
+
+          .header {
+              color: rgb(153, 153, 153);
+              border-bottom: 1px solid rgb(153, 153, 153);
+              text-transform: uppercase;
+              font-size: 13px;
+              margin-bottom: 40px;
+              font-family: 'PPNeueMontreal';
+          }
+
+          a {
+              text-decoration: none;
+              font-family: 'PPNeueMontreal', 'Share Tech Mono', monospace;
+              color: white;
+              font-weight: 300;
+          }
+      }
   }
-  
-  @keyframes gradient-animation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+
+  .footer {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      font-size: 12px;
+      gap: 40px;
   }
+}
+
+.activeMenu {
+  background: linear-gradient(91deg, #fff800, #f70606, #f75706, #f7067b, #a506f7, #0609f7);
+  background-size: 360% 360%;
+  animation: gradient-animation 10s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Media Queries for Responsive Design with min-width and min-height */
+
+@media (min-width: 800px) and (min-height: 600px) {
+  .menu .body {
+      padding: 80px;
+  }
+
+  .menu .body .nav {
+      font-size: 48px;
+      gap: 10px;
+      margin-top: 60px;
+  }
+
+  .menu .body .nav .header {
+      font-size: 12px;
+      margin-bottom: 30px;
+  }
+}
+@media (min-width: 800px) and (min-height: 300px) {
+  .menu .body {
+      padding: 50px;
+  }
+
+  .menu .body .nav {
+      font-size: 30px;
+      gap: 10px;
+      margin-top: 60px;
+  }
+
+  .menu .body .nav .header {
+      font-size: 12px;
+      margin-bottom: 3px;
+  }
+}
+@media (min-width: 1024px) and (min-height: 768px) {
+  .menu .body {
+      padding: 60px;
+  }
+
+  .menu .body .nav {
+      font-size: 36px;
+      gap: 8px;
+      margin-top: 50px;
+  }
+
+  .menu .body .nav .header {
+      font-size: 10px;
+      margin-bottom: 20px;
+  }
+
+  .menu .footer {
+      font-size: 10px;
+      gap: 30px;
+  }
+}
+
+@media (min-width: 1280px) and (min-height: 800px) {
+  .menu .body {
+      padding: 40px;
+  }
+
+  .menu .body .nav {
+      font-size: 28px;
+      gap: 6px;
+      margin-top: 40px;
+  }
+
+  .menu .body .nav .header {
+      font-size: 8px;
+      margin-bottom: 15px;
+  }
+
+  .menu .footer {
+      font-size: 8px;
+      gap: 20px;
+  }
+}

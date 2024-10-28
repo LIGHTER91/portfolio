@@ -11,7 +11,7 @@ const Title: React.FC<TitleProps> = ({ onComplete }) => {
   const { size } = useThree();
   const isMobile = size.width < 768;
 
-  const textScale = isMobile ? 0.75 : 1;
+  const textScale = isMobile ? 0.5 : 1;
   const text = "LUCIEN LACHAUD";
 
   const [opacities, setOpacities] = useState(Array(text.length).fill(0));
