@@ -8,16 +8,19 @@ interface DragDetectorProps {
 const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration = 500 }) => {
   const isDragging = useRef(false);
   const startY = useRef(0);
-  const pressTimer = useRef<NodeJS.Timeout | null>(null); // Changer le type ici
+  const pressTimer = useRef<NodeJS.Timeout | null>(null);
+  const isMobile = useRef<boolean>(navigator.maxTouchPoints > 0);
 
   const handleMouseDown = (event: MouseEvent) => {
+    if (isMobile.current) return;
+    
     isDragging.current = false;
     startY.current = event.clientY;
 
     // Start the press timer
     pressTimer.current = setTimeout(() => {
       isDragging.current = true;
-    }, pressDuration) as unknown as NodeJS.Timeout; // Cast à NodeJS.Timeout
+    }, pressDuration) as unknown as NodeJS.Timeout;
   };
 
   const handleMouseMove = (event: MouseEvent) => {
@@ -39,12 +42,13 @@ const DragDetector: React.FC<DragDetectorProps> = ({ onDragDown, pressDuration =
   // Handle touch events
   const handleTouchStart = (event: TouchEvent) => {
     if (event.touches.length === 1) { // Single touch only
-      isDragging.current = false;
       startY.current = event.touches[0].clientY;
 
+      // Start the timer for mobile long press
       pressTimer.current = setTimeout(() => {
         isDragging.current = true;
-      }, pressDuration) as unknown as NodeJS.Timeout; // Cast à NodeJS.Timeout
+        onDragDown();
+      }, 1000); // 1 second press duration for mobile
     }
   };
 
