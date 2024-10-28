@@ -31,6 +31,7 @@
   background-size: cover;
   background-position: center;
 }
+
 #card2 {
   background-image: url('/portfolio/contact/cards/mail.jpeg');
   background-size: cover;
@@ -41,10 +42,12 @@
   transform: translateY(-30px);
   box-shadow: 0 8px 20px rgba(0, 110, 255, 0.705);
 }
-#card2:hover{
+
+#card2:hover {
   transform: translateY(-30px);
   box-shadow: 0 8px 20px rgba(255, 94, 0, 0.705);
 }
+
 .card-title {
   font-family: 'PPNeueMontreal';
   margin: 0;
@@ -101,5 +104,61 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+/* Media Queries */
+
+/* For devices with a max width of 768px (tablets and smaller) */
+@media (max-width: 768px) {
+  .card {
+    flex-basis: 48%; /* Adjust card size for smaller screens */
+    width: 48%; /* Adjust width for smaller screens */
+    height: 40%; /* Adjust height for smaller screens */
+  }
+
+  .card-title {
+    font-size: 2rem; /* Smaller font size for titles */
+  }
+}
+
+/* For devices with a max width of 480px (mobile phones) */
+@media (max-width: 480px) {
+  .card {
+    flex-basis: 10%; /* Make cards take more width on small screens */
+    width: 40%; /* Full width on mobile */
+    height: 30%; /* Adjust height for mobile */
+  }
+
+  .card-title {
+    font-size: 1.5rem; /* Further decrease title size */
+  }
+}
+
+/* For landscape orientation on tablets */
+@media (max-width: 768px) and (orientation: landscape) {
+  .card {
+    flex-basis: 32%; /* Three cards in landscape mode */
+    width: 32%;
+    height: 35%; /* Adjust height for landscape */
+  }
+}
+/* For landscape orientation on tablets */
+@media (max-width: 950px) and (orientation: landscape) {
+  .card {
+    flex-basis: 10%; /* Three cards in landscape mode */
+    width: 32%;
+    height: 35%; /* Adjust height for landscape */
+  }
+  .card-title {
+    font-size: 1.5rem; /* Further decrease title size */
+  }
+}
+/* For landscape orientation on mobile phones */
+@media (max-width: 480px) and (orientation: landscape) {
+  .card {
+    flex-basis: 80%; /* Wider cards in landscape mode */
+    width: 80%;
+    height: 30%; /* Keep height consistent */
   }
 }

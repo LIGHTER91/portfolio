@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Transition.css';
 import DropdownMenu from './DropDownMenu';
-
+import DropdownMenuMobile from './DropDownMenuMobile';
 interface TransitionProps {
   className?: string;
   onTransitionComplete: () => void;
@@ -11,6 +11,7 @@ interface TransitionProps {
 const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete ,projects}) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [animateDropdown, setAnimateDropdown] = useState(false);
+  const isMobileOrTablet = /Mobi|Tablet|Android|iPad|iPhone/.test(navigator.userAgent);
 
   useEffect(() => {
     if (className?.includes('show')) {
@@ -37,7 +38,8 @@ const Transition: React.FC<TransitionProps> = ({ className, onTransitionComplete
   return (
     <div className={`transition ${className}`}>
       <div className="transition-background" />
-      {showDropdown && <DropdownMenu projects={projects} className={animateDropdown ? 'show' : ''} />}
+      {!isMobileOrTablet&&showDropdown && <DropdownMenu projects={projects} className={animateDropdown ? 'show' : ''} />}
+      {isMobileOrTablet&&showDropdown && <DropdownMenuMobile projects={projects} className={animateDropdown ? 'show' : ''} />}
     </div>
   );
 };

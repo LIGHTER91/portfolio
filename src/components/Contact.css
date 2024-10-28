@@ -1,21 +1,84 @@
-.scene{
+/* Base styles */
+.scene {
     position: absolute;
     width: 100vw;
     height: 100vh;
 }
+
 .contact-container {
     width: 100vw;
     height: 100vh;
 }
-.card-container{
+
+.card-container {
     display: flex;
-    justify-content: center; /* Centrer les cartes */
-    align-items: center; /* Aligner verticalement si nécessaire */
-    gap: 20px; /* Espacement entre les cartes */
-    flex-wrap: wrap; 
+    justify-content: center; /* Center the cards */
+    align-items: center; /* Align vertically if necessary */
+    gap: 20px; /* Spacing between cards */
+    flex-wrap: wrap;
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     gap: 100px;
+}
+
+/* Media Queries */
+
+/* For devices with a max width of 768px (tablets and smaller) */
+@media (max-width: 768px) {
+    .scene,
+    .contact-container {
+        height: 100%; /* Adjust height for smaller screens */
+    }
+
+    .card-container {
+        gap: 20px; /* Adjust gap for smaller screens */
+    }
+}
+
+/* For portrait orientation on devices with a max width of 768px */
+@media (max-width: 768px) and (orientation: portrait) {
+    .card-container {
+        flex-direction: column; /* Stack cards vertically */
+        gap: 10px; /* Smaller gap in portrait mode */
+    }
+}
+
+/* For landscape orientation on devices with a max width of 768px */
+@media (max-width: 768px) and (orientation: landscape) {
+    .card-container {
+        flex-direction: row; /* Align cards horizontally */
+        gap: 20px; /* Maintain larger gap in landscape mode */
+    }
+}
+
+/* For devices with a max width of 1024px (larger tablets) */
+@media (max-width: 1024px) {
+    .card-container {
+        gap: 40px; /* Adjust gap for larger tablets */
+    }
+}
+
+/* For devices larger than 1024px (desktops) */
+@media (min-width: 1025px) {
+    .card-container {
+        gap: 100px; /* Maintain larger gap for desktops */
+    }
+}
+
+/* For portrait orientation on larger devices */
+@media (min-width: 1025px) and (orientation: portrait) {
+    .card-container {
+        flex-direction: row; /* Keep cards aligned horizontally */
+        gap: 60px; /* Adjust gap for portrait mode */
+    }
+}
+
+/* For landscape orientation on larger devices */
+@media (min-width: 1025px) and (orientation: landscape) {
+    .card-container {
+        flex-direction: row; /* Keep cards aligned horizontally */
+        gap: 100px; /* Maintain larger gap */
+    }
 }

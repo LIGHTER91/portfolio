@@ -145,3 +145,104 @@ body,
 .back-button-container:hover .cross {
   color: rgb(255, 255, 255); /* Optional: Change cross color on hover */
 }
+
+/* General styles here */
+
+/* Styles for desktop (larger screens) */
+@media (min-width: 1024px) and (min-height: 768px) {
+  .project-view-container {
+    padding: 40px;
+  }
+
+  .additional-text {
+    font-size: 22px; /* Adjust font size for desktop */
+  }
+
+  .additional-text h3 {
+    font-size: 32px; /* Adjust heading size for desktop */
+  }
+
+  .image-left img {
+    width: 600px; /* Wider image on desktop */
+  }
+
+  .image-right img {
+    width: 400px; /* Wider image on desktop */
+  }
+}
+
+/* Styles for tablet (medium screens) */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+  .project-view-container {
+    padding: 30px;
+  }
+
+  .additional-text {
+    font-size: 20px; /* Adjust font size for tablet */
+  }
+
+  .additional-text h3 {
+    font-size: 28px; /* Adjust heading size for tablet */
+  }
+
+  .image-left img,
+  .image-right img {
+    width: 100%; /* Full width images on tablet */
+    height: auto;
+  }
+}
+
+/* Styles for mobile (small screens) */
+@media (max-width: 767px) {
+  .project-view-container {
+    padding: 20px;
+  }
+
+  .additional-text {
+    font-size: 18px; /* Adjust font size for mobile */
+  }
+
+  .additional-text h3 {
+    font-size: 24px; /* Adjust heading size for mobile */
+  }
+
+  .image-left img,
+  .image-right img {
+    width: 100%; /* Full width images on mobile */
+    height: auto;
+  }
+
+  .back-button-container {
+    bottom: 10px; /* Adjust button position for mobile */
+    width: 80px; /* Smaller button on mobile */
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) {
+  .project-view-container {
+    padding: 0px; /* Add more padding for landscape */
+  }
+
+  .additional-text {
+    font-size: 22px; /* Adjust font size for landscape */
+  }
+
+  .image-left img,
+  .image-right img {
+    width: 70%; /* Slightly narrower images in landscape */
+  }
+}
+
+/* Portrait orientation adjustments */
+@media (orientation: portrait) {
+  .project-view-container {
+    padding: 0px; /* Less padding for portrait */
+  }
+
+  .image-left img,
+  .image-right img {
+    width: 100%; /* Full width images in portrait */
+  }
+
+}

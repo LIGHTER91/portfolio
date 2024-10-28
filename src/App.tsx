@@ -12,6 +12,7 @@ import DragDetector from './components/Sticky/DragDetector';
 import Transition from './components/Sticky/Transition';
 
 const App = () => {
+
   const [showMenu, setShowMenu] = useState(() => {
     const savedMenuState = sessionStorage.getItem('showMenu');
     return savedMenuState === 'true';
