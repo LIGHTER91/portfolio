@@ -91,6 +91,22 @@
       margin-bottom: 30px;
   }
 }
+@media (min-width: 700px) and (min-height: 300px) {
+  .menu .body {
+      padding: 40px;
+  }
+
+  .menu .body .nav {
+      font-size: 25px;
+      gap: 5px;
+      margin-top: 60px;
+  }
+
+  .menu .body .nav .header {
+      font-size: 12px;
+      margin-bottom: 3px;
+  }
+}
 @media (min-width: 800px) and (min-height: 300px) {
   .menu .body {
       padding: 50px;
