@@ -15,7 +15,7 @@ const Home: React.FC = () => {
       <Scene />
       <div className="drag-down-indicator">
         <span className="vertical-text">
-          {isMobile ? 'Press Finger ---' : 'Press & Drag Down -->'}
+          {isMobile ? 'Hold Finger ---' : 'Hold & Drag Down -->'}
         </span>
       </div>
     </>
