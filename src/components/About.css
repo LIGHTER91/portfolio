@@ -367,7 +367,7 @@ section {
 }
 
 /* Tablet screens in landscape */
-@media (min-width: 768px) and (max-width: 1080px) and (orientation: landscape) {
+@media (min-width: 900px) and (max-width: 1080px) and (orientation: landscape) {
   .custom-cursor { display: none; } 
   #big { width: 100%; height: 100%; }
   .skill-cube { width: 50px; height: 50px; font-size: 10px;}
@@ -405,10 +405,32 @@ section {
 }
 
 /* Tablet screens in landscape */
-@media (min-width: 600px) and (max-width: 767px) and (orientation: landscape) {
+@media (min-width: 600px) and (max-width: 899px) and (orientation: landscape) {
   .custom-cursor { display: none; } 
   #big { width: 100%; height: 100%; }
-  .skill-cube { width: 80px; height: 80px; }
+  .skill-cube { width: 50px; height: 50px; font-size: 10px;}
+  #screen-1 article {font-size: 0.5em;;}
+  #up{font-size: 13px;}
+  #down{font-size: 13px;}
+  #left{font-size: 13px;}
+  #right{font-size: 13px;}
+  .dpad{    grid-row-gap: 0.5rem;
+    grid-column-gap: 0.25rem;}
+  .skill-info{
+    font-size: 12px;
+  }
+  .skill-cube-container{
+    top:20%
+  }
+  #screen_skills{
+    gap:2rem;
+  }
+  #screen_skills h2{
+    font-size: 40px;
+  }
+  #nav_retro header nav {
+    gap:300%;
+  }
   @keyframes expandScreen {
     0% {
       width: 1%;
