@@ -21,6 +21,7 @@ body,
 /* Dropdown Menu */
 .dropdown-menu {
   user-select: none;
+  cursor: none;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -57,7 +58,7 @@ body,
 .project-title {
   margin: 250px 0;
   padding: 10px 20px;
-  cursor: pointer;
+  cursor: none;
   font-size: 40px;
   color: rgba(0, 0, 0, 0);
   -webkit-text-stroke: 1px white;
