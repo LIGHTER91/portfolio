@@ -185,7 +185,7 @@ const About = () => {
         <InteractiveScene  onFranceClick={handleFranceClick}/>
       </Canvas>
       <div className="drag-down-indicator">
-        <span className="vertical-text">Clique sur la France</span>
+        {!screenExpanded&&(<span className="vertical-text">Clique sur la France</span>)}
       </div>
        <div className={`retro-container scanline-effect ${screenExpanded ? 'expanded' : ''}`} id="big">
       {loadingComplete ? (
@@ -236,6 +236,7 @@ const About = () => {
           <h2>{categories[currentCategoryIndex].name}</h2>
           <SkillCubes />
           <div className="skill-info">
+            <p >{currentSkill.name}</p>
             <p className='skill-level'>Niveau de connaissance: {[...Array(5)].map((_, pointIndex) => (
               
               <div
