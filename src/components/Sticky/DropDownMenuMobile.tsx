@@ -229,6 +229,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
 
   return (
     <div className={`dropdown-menu ${className}`}>
+
       <Canvas>
         {showSlider && (
           <group>
@@ -239,7 +240,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
         <CameraController />
         {textureRef.current && <Plane texture={textureRef.current} />}
       </Canvas>
-
+        <div className='doubletap'>Double Tap To Switch Project</div>
       {showSlider && (
         <div className={`titles-slider ${showSlider ? 'show' : ''}`}>
           {projects.map((project, index) => (
