@@ -102,7 +102,7 @@ body,
 /* Additional styles for headers, paragraphs, etc., can go here */
 .back-button-container {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
@@ -213,7 +213,7 @@ body,
   }
 
   .back-button-container {
-    bottom: 10px; /* Adjust button position for mobile */
+    bottom: 0px; /* Adjust button position for mobile */
     width: 80px; /* Smaller button on mobile */
   }
 }

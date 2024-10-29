@@ -3,6 +3,10 @@
   src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
   font-weight: bold;
 }
+@font-face {
+  font-family: 'Pervitina-Dex';
+  src: url('/portfolio/fonts/Pervitina-Dex-FFP.ttf') format('opentype');
+}
 
 /* Styles de base */
 html,
@@ -45,7 +49,7 @@ body,
   height: 100%;
   width: 40%;
   background: rgba(0, 0, 0, 0);
-  font-family: 'PPNeueMontreal';
+  font-family: 'Pervitina-Dex';
   text-transform: uppercase;
 }
 
@@ -89,7 +93,7 @@ body,
 }
 
 .project-details-h2 {
-  font-family: 'PPNeueMontreal';
+  font-family: 'Pervitina-Dex';
   text-transform: uppercase;
   font-size: 60px;
   color: #ffffff;

@@ -3,6 +3,19 @@
   src: url('/portfolio/fonts/ppneuemontreal-bold.otf') format('opentype');
   font-weight: bold;
 }
+@font-face {
+  font-family: 'h_calc_5*7';
+  src: url('/portfolio/fonts/h_calc57.ttf') format('opentype');
+  font-weight: bold;
+}
+@font-face {
+    font-family: 'DoctoGlitch';
+    src: url('/portfolio/fonts/DoctorGlitch.otf') format('opentype');
+}
+@font-face {
+    font-family: 'PlaneCrash';
+    src: url('/portfolio/fonts/PlaneCrash.ttf') format('opentype');
+}
 
 .card {
   flex-basis: 14%;
@@ -49,7 +62,7 @@
 }
 
 .card-title {
-  font-family: 'PPNeueMontreal';
+  font-family: 'DoctoGlitch';
   margin: 0;
   font-size: 3rem;
   font-style: italic;

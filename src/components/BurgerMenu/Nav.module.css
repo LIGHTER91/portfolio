@@ -8,7 +8,15 @@
   src: url('/portfolio/fonts/h_calc57.ttf') format('opentype');
   font-weight: bold;
 }
-
+@font-face {
+    font-family: 'DoctoGlitch';
+    src: url('/portfolio/fonts/DoctorGlitch.otf') format('opentype');
+}
+@font-face {
+    font-family: 'PlaneCrash';
+    src: url('/portfolio/fonts/PlaneCrash.ttf') format('opentype');
+}
+  
 .menu {
   height: 100vh;
   width: 100vw;
@@ -40,7 +48,7 @@
               text-transform: uppercase;
               font-size: 13px;
               margin-bottom: 40px;
-              font-family: 'PPNeueMontreal';
+              font-family: 'DoctoGlitch';
           }
 
           a {
