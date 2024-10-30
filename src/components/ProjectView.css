@@ -162,7 +162,13 @@ body,
   width: 100%;
   margin: inherit;
 }
-
+.container_e {
+  
+  justify-content: center;
+  gap: 20%; /* Espace entre les deux parties */
+  width: 100%;
+  margin: inherit;
+}
 #firstpart,
 #secondpart {
   width: 450px;
@@ -192,10 +198,48 @@ body,
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
-
+.p_p{
+  position: relative;
+  width:60% ;
+  transform: translate(-50%, 0%);
+  left: 50%;
+}
+.secondpart{
+  position: relative;
+  width:60% ;
+  transform: translate(-50%, 0%);
+  left: 50%;
+}
 .download-button:hover {
   background-color: #45a049;
   color: black; 
+}
+.containertable {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h1 {
+  color: #ffffff;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+th {
+  background-color: #f2f2f200;
+  font-weight: bold;
+}
+.notes {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #666;
 }
 /* Styles for desktop (larger screens) */
 @media (min-width: 1024px) and (min-height: 768px) {
