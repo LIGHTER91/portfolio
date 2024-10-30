@@ -109,28 +109,34 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
 )}
       </div>
       <div className="content-sections">
-        <div className="section">
-          <div className="image-left">
-            <img src="./portfolio/projects/archeovision/unet_architecture.png" alt="Context Image 1" />
-          </div>
-          <div className="text-right">
-            <h3>Contexte et Objectif</h3>
-            <p style={{ width: '400px' }}>
-              Le projet a été développé dans un contexte archéologique pour la détection de pigments invisibles à l'œil nu sur des blocs de pierres historiques. Ces pigments, découverts grâce à des techniques de numérisation avancées, fournissent des informations cruciales pour la reconstitution du temple d’Apollon à Delphes. Mon objectif était de développer un modèle de segmentation d’image permettant de détecter ces pigments avec une haute précision, tout en réduisant le nombre de faux positifs liés à la présence d’éléments parasites tels que les lichens et la pollution.
+        
+     
+            <img className="imagep" src="./portfolio/projects/archeovision/unet_architecture.png" alt="Context Image 1"  aria-description='Unet Model'/>
+            <div className="container">
+            <p id='firstpart' >
+            Ce projet a pour objectif de développer une méthode de détection automatique de pigments imperceptibles à l’œil nu, présente dans des sites historiques comme le Temple d’Apollon à Delphes. Grâce aux avancées en segmentation d'image et aux modèles d'apprentissage profond, notre équipe a conçu une approche robuste pour identifier avec précision les traces de pigments tout en réduisant les faux positifs, causés par des éléments perturbateurs comme des lichens et des moisissures.
             </p>
-          </div>
-        </div>
-        <div className="section reverse">
-          <div className="image-right">
-            <img src="./portfolio/projects/archeovision/ptsbleus.png" alt="Approach Image 2" />
-          </div>
-          <div className="text-right">
-            <h3>Analyse et Approche</h3>
-            <p style={{ width: '450px' }}>
-              Dans l'approche initiale, plusieurs modèles d'apprentissage automatique ont été envisagés, notamment les architectures de réseaux neuronaux U-Net, Mask R-CNN, et DeepLab. Chacun de ces modèles a été testé et comparé pour leur capacité à identifier de petites traces de pigments dans des images complexes. Ce processus d'évaluation m'a permis de mieux comprendre les performances et les limitations de chaque modèle, et de choisir la meilleure solution adaptée au projet.
+        
+    
+       
+            <p id='secondpart'>
+            Notre solution repose principalement sur le modèle de segmentation U-Net, adapté pour cette tâche exigeante. Les données utilisées proviennent d’une collection d’images haute-résolution du site, complétées par un processus d'augmentation pour enrichir le modèle d’apprentissage. L'outil final offre une analyse visuelle précise, permettant aux chercheurs de révéler et étudier ces pigments, essentiels pour reconstituer l’aspect originel des structures antiques.
+            Pour en savoir plus, consultez notre {' '}
+    <a href="https://gitlab.emi.u-bordeaux.fr/lulachaud/unettraining_temple.git" target="_blank">
+      dépôt GitLab
+    </a>.
             </p>
-          </div>
-        </div>
+           
+            
+ 
+     </div>
+     <div className="download-container">
+  <a href="./portfolio/projects/archeovision/archeovision_rapport.pdf" download className="download-button">
+    Télécharger le rapport
+  </a>
+</div>
+     <img className="imagep" src="./portfolio/projects/archeovision/ptsbleus.png" alt="Context Image 1"  aria-description='Unet Model'/>
+
       </div>
     </React.Fragment>
   );

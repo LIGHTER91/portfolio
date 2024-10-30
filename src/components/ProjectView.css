@@ -146,8 +146,57 @@ body,
   color: rgb(255, 255, 255); /* Optional: Change cross color on hover */
 }
 
-/* General styles here */
+.content-sections{
+  color: white;
+  font-family: 'PPNeueMontreal';
+  background-color: black;
+ 
+  z-index: 10000;
+  position: relative;
+}
+.container {
 
+  display: flex;
+  justify-content: center;
+  gap: 20%; /* Espace entre les deux parties */
+  width: 100%;
+  margin: inherit;
+}
+
+#firstpart,
+#secondpart {
+  width: 450px;
+  font-size: 20px;
+}
+
+.imagep{
+  position: relative;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  margin: inherit;
+
+}
+.download-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.download-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: #45a049;
+  color: black; 
+}
 /* Styles for desktop (larger screens) */
 @media (min-width: 1024px) and (min-height: 768px) {
   .project-view-container {
