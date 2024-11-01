@@ -108,6 +108,15 @@ const About = () => {
         { name: "Vuejs", level: 4, description: "Utilisé pour développer des applications web avec une approche progressive." },
       ],
     },
+    {
+      name: "Graphics engine",
+      skills: [
+        { name: "Unity", level: 3, description: "Conception de petits projets (jeu d'horreur,jeu en ligne)" },
+        { name: "C#", level: 4, description: "Language utilisé durant la réalisation de petis projets sur le moteur graphique Unity" },
+        { name: "Blender", level: 1, description: "Tentative d'apprendre à modèliser sur ce logiciel de modèlisation 3D" },
+      ],
+      
+    },
   ];
   
 

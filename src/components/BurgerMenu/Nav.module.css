@@ -70,6 +70,7 @@
 }
 
 .activeMenu {
+    
   background: linear-gradient(91deg, #fff800, #f70606, #f75706, #f7067b, #a506f7, #0609f7);
   background-size: 360% 360%;
   animation: gradient-animation 10s ease infinite;

@@ -87,6 +87,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
   return (
     <React.Fragment>
       <div className="project-view-container">
+     
         <Canvas>
           {textureRef.current && <Plane texture={textureRef.current} />}
         </Canvas>
@@ -114,7 +115,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
 )}
       </div>
       {currentProject.title=='Détection automatique de pigments par Segmentation Sémantique'&&<div className="content-sections">
-        
+        <div className="grain-effect"></div>
      
             <img className="imagep" src="./portfolio/projects/archeovision/unet_architecture.png" alt="Context Image 1"  aria-description='Unet Model'/>
             <div className="container">
@@ -144,7 +145,9 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
 
       </div>}
       {currentProject.title=='Prédiction des votes durant les élections présidentielles'&&<div className="content-sections">
+        <div className="grain-effect"></div>
         <div className="container_e">
+          
         <p className="p_p" >
         Ce projet a pour but de prédire des résultats liés à l'élection présidentielle française de 2022 en utilisant un modèle de régression linéaire avec sélection de variables. En s'appuyant sur des données socio-économiques et démographiques de 2021, notre objectif principal était d'explorer et de comprendre les facteurs influençant le taux d'abstention et les scores des candidats au premier tour.
         </p>

@@ -41,7 +41,8 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ x, y, isTitleHovered }) => 
         width: `${cursorSize}px`, 
         height: `${cursorSize}px`, 
         backgroundColor: cursorColor,
-        borderRadius: '50%'
+        borderRadius: '50%',
+        zIndex: '100'
       }}>
       <div className={`cursor-text ${isTitleHovered ? 'fade-out' : 'fade-in'}`}>HOLD & SLIDE</div>
     </div>

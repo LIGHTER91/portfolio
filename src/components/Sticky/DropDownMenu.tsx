@@ -203,6 +203,7 @@ const scrollPosition = useRef<number>(sessionStorage.getItem('scrollPosition') ?
 
   return (
     <div className={`dropdown-menu ${className}`}>
+      <div className="grain-effect"></div>
       <Canvas>
         {showSlider && (
           <group>
@@ -234,6 +235,7 @@ const scrollPosition = useRef<number>(sessionStorage.getItem('scrollPosition') ?
 
       {!showSlider && (
         <div className={`project-details ${visible ? 'show' : ''}`}>
+         
           <div className="project-details-div">
             <h2
               className="project-details-h2"
