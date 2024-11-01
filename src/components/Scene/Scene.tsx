@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Environment, Html, useProgress} from '@react-three/drei';
+import { Environment} from '@react-three/drei';
 import Model from './Model';
 import Spark from './Spark';
 import Stars from './Star';
@@ -8,22 +8,7 @@ import './Scene.css';
 import { useState, useMemo } from 'react';
 
 // Loading component to display while the scene is loading
-const Loader = () => {
-  const { progress, loaded, total } = useProgress(); // Get the current loading progress and state
 
-  // Display loader only if loading is still in progress
-  if (loaded < total) {
-    return (
-      <Html center>
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <p>Loading... {progress.toFixed(0)}%</p>
-        </div>
-      </Html>
-    );
-  }
-  return null; // Return nothing once everything is loaded
-};
 
 const Scene: React.FC = () => {
   const [showModel, setShowModel] = useState(false); // State to control when to show the model
@@ -51,8 +36,7 @@ const Scene: React.FC = () => {
       {/* Show Model only after Title completes */}
       {showModel && <Model />}
       
-      {/* Loader will disappear once the scene is fully loaded */}
-      <Loader />
+    
     </Canvas>
   );
 };
