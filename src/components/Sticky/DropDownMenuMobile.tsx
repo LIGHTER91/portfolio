@@ -262,7 +262,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ className = '', projects })
 
       {!showSlider && (
         <div className={`project-details ${visible ? 'show' : ''}`}>
-          <div className="grain-effect"></div>
+          
           <div className="project-details-div">
             <h2 className="project-details-h2">
               {currentProject.title}
