@@ -9,6 +9,7 @@ import Curve from './Curve';
 const navItems = [
   { title: "INTRO", href: "/" },
   { title: "PROJECTS", href: "/projects" },
+  { title: "CURRICULUM VITAE", href: "/curriculum_vitae" },
   { title: "ABOUT", href: "/about" },
   { title: "CONTACT", href: "/contact" },
 ];

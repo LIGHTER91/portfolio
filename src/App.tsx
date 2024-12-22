@@ -6,6 +6,7 @@ import Header from './components/BurgerMenu/BurgerMenu';
 import Home from './components/Home';
 import Work from './components/Work';
 import About from './components/About';
+import Cv from './components/Cv';
 import Contact from './components/Contact';
 import ProjectView from './components/ProjectView'; // Import ProjectView component
 import DragDetector from './components/Sticky/DragDetector';
@@ -105,7 +106,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, sho
       setIsProjectViewRoute(false)
       console.log(location.pathname);
     }
-    if (location.pathname.startsWith('/about')||location.pathname.startsWith('/contact'))  {
+    if (location.pathname.startsWith('/about')||location.pathname.startsWith('/curriculum_vitae')||location.pathname.startsWith('/contact'))  {
       setDeactivate(true);
       setIsProjectViewRoute(false);
       console.log("DragDetector deactivated");
@@ -130,6 +131,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, sho
           <Route path="/projects" element={<Work projects={projects} />} />
           <Route path="/projects/:id" element={<ProjectView projects={projects} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/curriculum_vitae" element={<Cv />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       )}
@@ -139,6 +141,7 @@ const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ projects, onDragDown, sho
           <Route path="/projects" element={<Work projects={projects} />} />
           <Route path="/projects/:id" element={<ProjectView projects={projects} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/curriculum_vitae" element={<Cv />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       )}
