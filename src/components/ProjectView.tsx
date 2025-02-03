@@ -285,7 +285,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
   <div className="content-sections">
     <div className="grain-effect"></div>
 
-    <img className="imagep" src="./portfolio/projects/reinforcement-learning/environment.png" alt="Environment Image" aria-description="Environment Simulation" />
+    <img className="imagep" src="./portfolio/projects/archeovision/ptsbleus.png" alt="Environment Image" aria-description="Environment Simulation" />
 
     <div className="container">
       <p id='firstpart'>
@@ -309,12 +309,12 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
     </div>
 
     <div className="download-container">
-      <a href="./portfolio/projects/reinforcement-learning/rapport.pdf" download className="download-button">
+      <a href="./portfolio/projects/archeovision/ptsbleus.png" download className="download-button">
         Télécharger le rapport
       </a>
     </div>
 
-    <img className="imagep" src="./portfolio/projects/reinforcement-learning/simulation-result.png" alt="Simulation Result Image" aria-description="Simulation Result" />
+    <img className="imagep" src="./portfolio/projects/archeovision/ptsbleus.png" alt="Simulation Result Image" aria-description="Simulation Result" />
   </div>
 }
 
