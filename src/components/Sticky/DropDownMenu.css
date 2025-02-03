@@ -60,8 +60,14 @@ body,
   background: rgba(0, 0, 0, 0);
   font-family: 'Pervitina-Dex';
   text-transform: uppercase;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
+.titles-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
 /* Projet Title */
 .project-title {
   margin: 250px 0;
@@ -129,6 +135,7 @@ body,
     align-items: center;
     flex-direction: column;
     text-align: center;
+    
   }
  
   .project-title {

@@ -30,7 +30,9 @@ const App = () => {
 
   const projects = [
     { title: 'Détection automatique de pigments par Segmentation Sémantique', image: videoElement, sector: 'Deep Learning', readMoreLink: '/portfolio/#/projects/archeovision' },
+    { title: 'Reinforcement Learning Projet: Université', image: "./portfolio/projects/test.png", sector: 'Reinforcement Learning', readMoreLink: '/portfolio/#/projects/rlprojet' },
     { title: 'Prédiction des votes durant les élections présidentielles', image: "./portfolio/projects/test.png", sector: 'Machine Learning', readMoreLink: '/portfolio/#/projects/election' },
+    
   ];
 
   const handleDragDown = () => {

@@ -281,6 +281,43 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
  </div>
  </div>
   </div>}
+  {currentProject.title == 'Reinforcement Learning Projet: Université' && 
+  <div className="content-sections">
+    <div className="grain-effect"></div>
+
+    <img className="imagep" src="./portfolio/projects/reinforcement-learning/environment.png" alt="Environment Image" aria-description="Environment Simulation" />
+
+    <div className="container">
+      <p id='firstpart'>
+        Ce projet s'inscrit dans le cadre du cours d’apprentissage par renforcement (Reinforcement Learning) à l’Université de Bordeaux. Il vise à modéliser et résoudre une situation simulée où des robots doivent collaborer pour accomplir diverses tâches dans un environnement potentiellement dangereux pour les humains. 
+        <br /> Les missions principales des robots sont les suivantes : 
+        <ul>
+          <li>Trouver du matériel dans un hangar (H) où les emplacements varient chaque jour.</li>
+          <li>Nettoyer un entrepôt (E) en identifiant et éliminant la saleté.</li>
+          <li>Se recharger dans un garage (G) où les stations de recharge changent également de place chaque jour.</li>
+        </ul>
+      </p>
+
+      <p id='secondpart'>
+        Les robots sont modélisés sous forme d'agents évoluant sur des grilles représentant les pièces H, E et G. L'objectif est de tester différentes solutions algorithmiques, notamment des approches avec ou sans modèle (model-based/model-free) ainsi que des stratégies single-agent et multi-agent. 
+        <br />Ce projet offre une excellente opportunité d'approfondir les concepts pratiques et théoriques de l'apprentissage par renforcement tout en explorant des solutions collaboratives et dynamiques.
+        <br />Pour en savoir plus, consultez notre {' '}
+        <a href="https://gitlab.emi.u-bordeaux.fr/lulachaud/unettraining_temple.git" target="_blank">
+          dépôt GitLab
+        </a>.
+      </p>
+    </div>
+
+    <div className="download-container">
+      <a href="./portfolio/projects/reinforcement-learning/rapport.pdf" download className="download-button">
+        Télécharger le rapport
+      </a>
+    </div>
+
+    <img className="imagep" src="./portfolio/projects/reinforcement-learning/simulation-result.png" alt="Simulation Result Image" aria-description="Simulation Result" />
+  </div>
+}
+
     </React.Fragment>
   );
 };
