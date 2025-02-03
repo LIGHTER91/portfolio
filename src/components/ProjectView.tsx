@@ -58,7 +58,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
       video.play().catch((error) => console.log("Error playing video:", error));
       textureRef.current = videoTexture;
     }
-  }, [projects, projectId]); // Depend on projectId
+  }, [projects, projectId, location.pathname]); // Depend on projectId
 
   const handleBackClick = () => {
     navigate(-1); // Go back to the previous page
@@ -314,7 +314,7 @@ const ProjectView: React.FC<ProjectViewProps> = ({ projects }) => {
       </a>
     </div>
 
-    <img className="imagep" src="./portfolio/projects/archeovision/ptsbleus.png" alt="Simulation Result Image" aria-description="Simulation Result" />
+    <img className="imagep" src="./portfolio/projects/reinforcement-learning/simulation-result.png" alt="Simulation Result Image" aria-description="Simulation Result" />
   </div>
 }
 
