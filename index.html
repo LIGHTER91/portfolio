@@ -545,14 +545,20 @@
     color: var(--muted);
     letter-spacing: 0.05em;
   }
-  .proj-link {
+  .proj-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
     margin-top: 1.5rem;
+  }
+  .proj-link {
     font-family: var(--font-mono);
     font-size: 0.65rem;
     color: var(--accent);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     display: flex; align-items: center; gap: 0.4rem;
+    text-decoration: none;
   }
   .proj-link::after { content: '↗'; }
 
@@ -942,7 +948,7 @@
     </p>
     <div class="projects-grid">
 
-      <a href="https://github.com/LIGHTER91/ai-job-agent" target="_blank" rel="noreferrer" class="proj-card">
+      <div class="proj-card">
         <div class="proj-icon">AGT</div>
         <div class="proj-title">AI Job Agent</div>
         <div class="proj-desc">
@@ -956,8 +962,11 @@
           <span class="proj-tech">GitHub Pages</span>
           <span class="proj-tech">Agents</span>
         </div>
-        <div class="proj-link">View on GitHub</div>
-      </a>
+        <div class="proj-actions">
+          <a href="https://lighter91.github.io/ai-job-agent/" target="_blank" rel="noreferrer" class="proj-link">Live Demo</a>
+          <a href="https://github.com/LIGHTER91/ai-job-agent" target="_blank" rel="noreferrer" class="proj-link">View on GitHub</a>
+        </div>
+      </div>
 
       <a href="https://github.com/LIGHTER91/dataiku-codex-plugin" target="_blank" rel="noreferrer" class="proj-card">
         <div class="proj-icon">PLG</div>
